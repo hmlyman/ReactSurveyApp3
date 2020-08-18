@@ -34,6 +34,4 @@ class TextAreaQuestion extends Component {
   }
 }
 
-class RadioQuestion extends Component {}
-
-export { TextAreaQuestion, RadioQuestion };
+export default TextAreaQuestion;
