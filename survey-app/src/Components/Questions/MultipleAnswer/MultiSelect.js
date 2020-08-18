@@ -20,20 +20,21 @@ class MultiSelect extends Component {
 
   render() {
     return (
-      <div className="multiSelectContainer">
+      <div id="multiSelectContainer">
         {MultiSelectData.map((data, key) => {
           return (
             <div key={key} className="form-select">
               <h5>{data.question}</h5>
-              <form onSubmit={this.handleSubmit}>
-                <label>
-                  <input
-                    type="text"
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                  />
-                </label>
-              </form>
+              <select name={data.name} className="" multiple={data.multiple}>
+                {MultiSelectData.map((data, key) => {
+                  return (
+                    <option value={data.value} id={`${data.name}-${key}`}>
+                      {data.label}
+                    </option>
+                  );
+                })}
+                )
+              </select>
             </div>
           );
         })}

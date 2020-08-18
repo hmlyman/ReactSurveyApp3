@@ -115,7 +115,7 @@ export const MultiSelectData = [
     page: 2,
     name: "multiSelect",
     question: "Select all that apply:",
-    type: "multiSelect",
+    type: "select",
     multiple: true,
     options: [
       {
@@ -124,9 +124,9 @@ export const MultiSelectData = [
       },
       {
         value:
-          "I am happy with the level of customer service I have receievd today.",
+          "I am happy with the level of customer service I have received today.",
         label:
-          "I am happy with the level of customer service I have receievd today.",
+          "I am happy with the level of customer service I have received today.",
       },
       {
         value:
