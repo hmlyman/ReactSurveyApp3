@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+// import SurveyData from "./SurveyApp/survey.json";
 
 class EmailForm extends Component {
   constructor(props) {
     super(props);
     this.state = { value: "" };
-    this.state = this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 

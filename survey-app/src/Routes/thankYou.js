@@ -14,7 +14,7 @@ class ThankYou extends React.Component {
               className="btn btn-primary my-5 mx-5"
               to="/"
             >
-              Begin new survey
+              Begin New Survey
             </Link>
           </div>
         </div>
