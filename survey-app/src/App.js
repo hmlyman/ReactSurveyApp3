@@ -1,13 +1,23 @@
 import React from "react";
 import "./App.css";
-import { Baz } from "./test.js";
+import NameForm from "./Name.js";
+import EmailForm from "./Email.js";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Survey App</p>
-        <p>{Baz}</p>
+        <NameForm />
+        <EmailForm />
+        <br></br>
+        <Link
+          name="BeginSurveyButton"
+          className="btn btn-primary my-5 mx-5"
+          to="/survey"
+        >
+          Begin Survey
+        </Link>
       </header>
     </div>
   );

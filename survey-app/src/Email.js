@@ -1,4 +1,6 @@
-class Question extends React.component {
+import React, { Component } from "react";
+
+class EmailForm extends Component {
   constructor(props) {
     super(props);
     this.state = { value: "" };
@@ -19,17 +21,16 @@ class Question extends React.component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Name:
+          Email:
           <input
-            type="text"
+            type="email"
             value={this.state.value}
             onChange={this.handleChange}
           />
         </label>
-        <input type="submit" value="Submit" />
       </form>
     );
   }
 }
 
-export default Question;
+export default EmailForm;
