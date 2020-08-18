@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import SurveyData from "./SurveyApp/survey.json";
+import { EmailFormData } from "../Data/SurveyData";
 
 class EmailForm extends Component {
   constructor(props) {
@@ -19,16 +19,24 @@ class EmailForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </label>
-      </form>
+      <div className="emailContainer">
+        {EmailFormData.map((data, key) => {
+          return (
+            <div key={key}>
+              <form onSubmit={this.handleSubmit}>
+                <label>
+                  <input
+                    name={data.name}
+                    type={data.type}
+                    placeholder={data.placeholder}
+                    onChange={this.handleChange}
+                  />
+                </label>
+              </form>
+            </div>
+          );
+        })}
+      </div>
     );
   }
 }

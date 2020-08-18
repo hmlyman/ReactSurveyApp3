@@ -1,4 +1,5 @@
-import { Component } from "react";
+import React, { Component } from "react";
+import CheckboxForm from "./Questions/MultipleAnswer/Checkbox";
 
 class SurveyComponent extends Component {
   constructor(props) {
@@ -19,7 +20,11 @@ class SurveyComponent extends Component {
   }
 
   render() {
-    return "SURVEY";
+    return (
+      <div className="surveyContainer">
+        <CheckboxForm />
+      </div>
+    );
   }
 }
 

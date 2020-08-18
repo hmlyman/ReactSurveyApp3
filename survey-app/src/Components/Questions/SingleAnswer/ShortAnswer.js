@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { SurveyData } from "./Questions/MultipleAnswer/SurveyData";
 
 class TextAreaQuestion extends Component {
   constructor(props) {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NameFormData } from "../Data/SurveyData";
 
 class NameForm extends Component {
   constructor(props) {
@@ -19,16 +20,24 @@ class NameForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </label>
-      </form>
+      <div className="nameContainer">
+        {NameFormData.map((data, key) => {
+          return (
+            <div key={key}>
+              <form onSubmit={this.handleSubmit}>
+                <label>
+                  <input
+                    name={data.name}
+                    type={data.type}
+                    placeholder={data.placeholder}
+                    onChange={this.handleChange}
+                  />
+                </label>
+              </form>
+            </div>
+          );
+        })}
+      </div>
     );
   }
 }
