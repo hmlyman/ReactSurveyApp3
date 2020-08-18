@@ -4,19 +4,28 @@ import { Link } from "react-router-dom";
 
 function Survey() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <SurveyComponent />
-        <br></br>
-        <Link
-          name="SubmitSurveyButton"
-          className="btn btn-primary my-5 mx-5"
-          to="/thankyou"
-        >
-          Submit Survey
-        </Link>
-      </header>
-    </div>
+    <>
+      <div className="container">
+        <nav className="navbar">
+          <Link className="btn btn-primary" to="/cancelSurvey">
+            Cancel Survey
+          </Link>
+        </nav>
+      </div>
+      <div className="container">
+        <div className="col-6 mx-auto text-left">
+          <h1 className="m-auto">Survey</h1>
+          <SurveyComponent />
+          <Link
+            name="submitSurveyButton"
+            className="btn btn-primary my-5 mx-5"
+            to="/thankyou"
+          >
+            Submit Survey
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }
 

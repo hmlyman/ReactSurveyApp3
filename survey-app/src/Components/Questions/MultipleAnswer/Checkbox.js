@@ -22,7 +22,7 @@ class CheckboxForm extends Component {
       <div className="checkboxContainer">
         {CheckboxData.map((data, key) => {
           return (
-            <div key={key} className={`form-check`}>
+            <div key={key} className="form-check">
               <h5>{data.question}</h5>
               <form onSubmit={this.handleSubmit}>
                 <input

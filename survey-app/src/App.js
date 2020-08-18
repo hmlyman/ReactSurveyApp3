@@ -8,6 +8,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Link
+          name="loadSurveyButton"
+          className="btn btn-primary my-5 mx-5"
+          to="/loadedSurvey"
+        >
+          Load Survey
+        </Link>
         <NameForm />
         <EmailForm />
         <br></br>

@@ -16,7 +16,7 @@ export const EmailFormData = [
     placeholder: "emailaddress@email.com",
   },
 ];
-export const TextAreaData = [
+export const ShortAnswerData = [
   {
     page: 2,
     name: "textArea",
@@ -26,7 +26,7 @@ export const TextAreaData = [
       "Are you aware you are canceling with your current company and entering a contract with Alder, Inc.?",
   },
 ];
-export const RadioChoiceData = [
+export const RadioButtonData = [
   {
     page: 2,
     required: true,

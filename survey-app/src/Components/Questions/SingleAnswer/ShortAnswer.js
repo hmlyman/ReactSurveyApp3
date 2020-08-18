@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { SurveyData } from "./Questions/MultipleAnswer/SurveyData";
+import { ShortAnswerData } from "../../../Data/SurveyData";
 
-class TextAreaQuestion extends Component {
+class ShortAnswerQuestion extends Component {
   constructor(props) {
     super(props);
     this.state = { value: "" };
@@ -20,19 +20,26 @@ class TextAreaQuestion extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="shortAnswerContainer">
+        {ShortAnswerData.map((data, key) => {
+          return (
+            <div key={key} className="">
+              <h5>{data.question}</h5>
+              <form onSubmit={this.handleSubmit}>
+                <label>
+                  <input
+                    type={data.type}
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                  />
+                </label>
+              </form>
+            </div>
+          );
+        })}
+      </div>
     );
   }
 }
 
-export default TextAreaQuestion;
+export default ShortAnswerQuestion;
