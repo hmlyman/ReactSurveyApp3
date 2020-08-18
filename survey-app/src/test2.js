@@ -1,6 +1,4 @@
 import React from "react";
-import $ from "jquery";
-import render from "react-dom";
 
 class App2 extends React.Component {
   constructor(props) {
