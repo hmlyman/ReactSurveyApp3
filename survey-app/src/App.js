@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import NameForm from "./Name.js";
-import EmailForm from "./Email.js";
+import NameForm from "./Components/NameForm.js";
+import EmailForm from "./Components/EmailForm.js";
 import { Link } from "react-router-dom";
 
 function App() {

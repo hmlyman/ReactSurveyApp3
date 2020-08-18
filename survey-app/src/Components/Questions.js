@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class EmailForm extends Component {
+class TextAreaQuestion extends Component {
   constructor(props) {
     super(props);
     this.state = { value: "" };
@@ -21,16 +21,19 @@ class EmailForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Email:
+          Name:
           <input
-            type="email"
+            type="text"
             value={this.state.value}
             onChange={this.handleChange}
           />
         </label>
+        <input type="submit" value="Submit" />
       </form>
     );
   }
 }
 
-export default EmailForm;
+class RadioQuestion extends Component {}
+
+export { TextAreaQuestion, RadioQuestion };
