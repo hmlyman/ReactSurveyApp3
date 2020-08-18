@@ -5,11 +5,18 @@ class LoadedSurvey extends React.Component {
   render() {
     return (
       <>
-        {" "}
-        <h1>Loaded Survey</h1>
-        <Link name="LStoHome-btn" className="btn btn-primary my-5 mx-5" to="/">
-          Home
-        </Link>
+        <div className="container">
+          <div className="col-6 mx-auto text-center">
+            <h1>Loaded Survey</h1>
+            <Link
+              name="loadedSurveyToHomeButton"
+              className="btn btn-primary my-5 mx-5"
+              to="/"
+            >
+              Home
+            </Link>
+          </div>
+        </div>
       </>
     );
   }

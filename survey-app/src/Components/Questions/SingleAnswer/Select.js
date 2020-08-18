@@ -25,14 +25,19 @@ class Select extends Component {
           return (
             <div key={key} className=" control-label">
               <h5>{data.question}</h5>
-              <form onSubmit={this.handleSubmit}>
-                <input
-                  type={data.type}
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                />
-                <label></label>
-              </form>
+              <select name={data.name} className="" multiple={data.multiple}>
+                <option hidden value>
+                  Select one
+                </option>
+                {SelectData.map((data, key) => {
+                  return (
+                    <option value={data.value} id={`${data.name}-${key}`}>
+                      {data.label}
+                    </option>
+                  );
+                })}
+                )
+              </select>
             </div>
           );
         })}
