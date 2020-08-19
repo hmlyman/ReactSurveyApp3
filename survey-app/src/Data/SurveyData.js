@@ -126,16 +126,19 @@ export const MultiSelectData = [
     multiple: true,
     options: [
       {
+        name: "multiSelect1",
         value: "I am happy with the system as it has been explained to me.",
         label: "I am happy with the system as it has been explained to me.",
       },
       {
+        name: "multiSelect2",
         value:
           "I am happy with the level of customer service I have received today.",
         label:
           "I am happy with the level of customer service I have received today.",
       },
       {
+        name: "multiSelect3",
         value:
           "I am happy with the representatives who have helped protect my home today.",
         label:

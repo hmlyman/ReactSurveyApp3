@@ -35,13 +35,22 @@ class MultiSelect extends Component {
                 {MultiSelectData.map((data, key) => {
                   return (
                     <>
-                      <option value={data.value} id={`${data.name}-${key}`}>
+                      <option
+                        value={data.value}
+                        id={`${data.options[0].name}-${key}`}
+                      >
                         {data.options[0].label}
                       </option>
-                      <option value={data.value} id={`${data.name}-${key}`}>
+                      <option
+                        value={data.value}
+                        id={`${data.options[1].name}-${key}`}
+                      >
                         {data.options[1].label}
                       </option>
-                      <option value={data.value} id={`${data.name}-${key}`}>
+                      <option
+                        value={data.value}
+                        id={`${data.options[2].name}-${key}`}
+                      >
                         {data.options[2].label}
                       </option>
                     </>

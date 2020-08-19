@@ -20,7 +20,7 @@ class Select extends Component {
 
   render() {
     return (
-      <div className="selectContainer">
+      <div id="selectContainer">
         {SelectData.map((data, key) => {
           return (
             <div key={key} className=" control-label">
