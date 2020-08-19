@@ -33,9 +33,22 @@ class RadioButton extends Component {
                     name={data.name}
                     type={data.type}
                     value={data.value}
-                    id={`${data.name}-${key}`}
+                    id={`${data.options[0].name}-${key}`}
                     onChange={this.handleChange}
                   />
+                  {data.options[0].label}
+                </label>
+                <label>
+                  <input
+                    className=""
+                    required={data.required}
+                    name={data.name}
+                    type={data.type}
+                    value={data.value}
+                    id={`${data.options[1].name}-${key}`}
+                    onChange={this.handleChange}
+                  />
+                  {data.options[1].label}
                 </label>
               </form>
             </div>

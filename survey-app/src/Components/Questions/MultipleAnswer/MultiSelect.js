@@ -25,12 +25,26 @@ class MultiSelect extends Component {
           return (
             <div key={key} className="form-select">
               <h5>{data.question}</h5>
-              <select name={data.name} className="" multiple={data.multiple}>
+              <select
+                name={data.name}
+                type={data.type}
+                className=""
+                multiple={data.multiple}
+                options={data.options}
+              >
                 {MultiSelectData.map((data, key) => {
                   return (
-                    <option value={data.value} id={`${data.name}-${key}`}>
-                      {data.label}
-                    </option>
+                    <>
+                      <option value={data.value} id={`${data.name}-${key}`}>
+                        {data.options[0].label}
+                      </option>
+                      <option value={data.value} id={`${data.name}-${key}`}>
+                        {data.options[1].label}
+                      </option>
+                      <option value={data.value} id={`${data.name}-${key}`}>
+                        {data.options[2].label}
+                      </option>
+                    </>
                   );
                 })}
                 )

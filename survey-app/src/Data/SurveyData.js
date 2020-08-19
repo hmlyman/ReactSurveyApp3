@@ -35,10 +35,12 @@ export const RadioButtonData = [
     type: "radio",
     options: [
       {
+        name: "radioChoiceYes",
         value: "Yes",
         label: "Yes",
       },
       {
+        name: "radioChoiceNo",
         value: "No",
         label: "No",
       },
@@ -53,26 +55,31 @@ export const CheckboxData = [
     type: "checkbox",
     options: [
       {
+        name: "checkbox1",
         value: "I am entering into a new contract.",
         label: "I am entering into a new contract.",
       },
       {
+        name: "checkbox2",
         value:
           "I will be responsible for $49.95 each month until my contract is over.",
         label:
           "I will be responsible for $49.95 each month until my contract is over.",
       },
       {
+        name: "checkbox3",
         value: "I have three days to cancel.",
         label: "I have three days to cancel.",
       },
       {
+        name: "checkbox4",
         value:
           "If I cancel after three days, I will be responsible for the remainder of the contract.",
         label:
           "If I cancel after three days, I will be responsible for the remainder of the contract.",
       },
       {
+        name: "checkbox5",
         value:
           "My system is monitored and if it is set off, the cops will come to my home.",
         label:

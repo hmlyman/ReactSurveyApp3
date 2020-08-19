@@ -29,13 +29,15 @@ class Select extends Component {
                 <option hidden value>
                   Select one
                 </option>
-                {SelectData.map((data, key) => {
-                  return (
-                    <option value={data.value} id={`${data.name}-${key}`}>
-                      {data.label}
-                    </option>
-                  );
-                })}
+                <option value={data.value} id={`${data.name}-${key}`}>
+                  {data.options[0].label}
+                </option>
+                <option value={data.value} id={`${data.name}-${key}`}>
+                  {data.options[1].label}
+                </option>
+                <option value={data.value} id={`${data.name}-${key}`}>
+                  {data.options[2].label}
+                </option>
                 )
               </select>
             </div>
