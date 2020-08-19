@@ -20,7 +20,7 @@ class NameForm extends Component {
 
   render() {
     return (
-      <div className="nameContainer">
+      <div id="nameContainer" className="container">
         {NameFormData.map((data, key) => {
           return (
             <div key={key}>
@@ -29,6 +29,7 @@ class NameForm extends Component {
                   <input
                     name={data.name}
                     type={data.type}
+                    required={true}
                     placeholder={data.placeholder}
                     onChange={this.handleChange}
                   />

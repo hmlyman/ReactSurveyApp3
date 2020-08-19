@@ -17,6 +17,7 @@ function Survey() {
           <h1 className="m-auto">Survey</h1>
           <SurveyComponent />
           <Link
+            // onClick={saveSurvey}
             name="submitSurveyButton"
             className="btn btn-primary my-5 mx-5"
             to="/thankyou"

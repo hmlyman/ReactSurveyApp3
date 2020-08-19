@@ -20,7 +20,7 @@ class Select extends Component {
 
   render() {
     return (
-      <div id="selectContainer">
+      <div id="selectContainer" className="container">
         {SelectData.map((data, key) => {
           return (
             <div key={key} className=" control-label">
@@ -38,7 +38,6 @@ class Select extends Component {
                 <option value={data.value} id={`${data.name}-${key}`}>
                   {data.options[2].label}
                 </option>
-                )
               </select>
             </div>
           );

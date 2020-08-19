@@ -20,37 +20,39 @@ class RadioButton extends Component {
 
   render() {
     return (
-      <div className="radioButtonContainer">
+      <div
+        id="radioButtonContainer"
+        className="container"
+        onSubmit={this.handleSubmit}
+      >
         {RadioButtonData.map((data, key) => {
           return (
             <div key={key} className="radio-inline control-label">
               <h5>{data.question}</h5>
-              <form onSubmit={this.handleSubmit}>
-                <label>
-                  <input
-                    className=""
-                    required={data.required}
-                    name={data.name}
-                    type={data.type}
-                    value={data.value}
-                    id={`${data.options[0].name}-${key}`}
-                    onChange={this.handleChange}
-                  />
-                  {data.options[0].label}
-                </label>
-                <label>
-                  <input
-                    className=""
-                    required={data.required}
-                    name={data.name}
-                    type={data.type}
-                    value={data.value}
-                    id={`${data.options[1].name}-${key}`}
-                    onChange={this.handleChange}
-                  />
-                  {data.options[1].label}
-                </label>
-              </form>
+              <label>
+                <input
+                  className=""
+                  required={data.required}
+                  name={data.name}
+                  type={data.type}
+                  value={data.value}
+                  id={`${data.options[0].name}-${key}`}
+                  onChange={this.handleChange}
+                />
+                {data.options[0].label}
+              </label>
+              <label>
+                <input
+                  className=""
+                  required={data.required}
+                  name={data.name}
+                  type={data.type}
+                  value={data.value}
+                  id={`${data.options[1].name}-${key}`}
+                  onChange={this.handleChange}
+                />
+                {data.options[1].label}
+              </label>
             </div>
           );
         })}

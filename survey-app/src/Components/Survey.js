@@ -25,12 +25,14 @@ class SurveyComponent extends Component {
 
   render() {
     return (
-      <div className="surveyContainer">
-        <ShortAnswer />
-        <RadioButton />
-        <Select />
-        <MultiSelect />
-        <CheckboxForm />
+      <div id="surveyContainer">
+        <form onSubmit={this.handleSubmit}>
+          <ShortAnswer />
+          <RadioButton />
+          <Select />
+          <MultiSelect />
+          <CheckboxForm />
+        </form>
       </div>
     );
   }

@@ -19,7 +19,7 @@ class EmailForm extends Component {
 
   render() {
     return (
-      <div className="emailContainer">
+      <div id="emailContainer" className="container">
         {EmailFormData.map((data, key) => {
           return (
             <div key={key}>

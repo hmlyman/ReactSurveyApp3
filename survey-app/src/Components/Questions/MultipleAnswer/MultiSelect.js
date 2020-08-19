@@ -20,7 +20,7 @@ class MultiSelect extends Component {
 
   render() {
     return (
-      <div id="multiSelectContainer">
+      <div id="multiSelectContainer" className="container">
         {MultiSelectData.map((data, key) => {
           return (
             <div key={key} className="form-select">
@@ -32,30 +32,26 @@ class MultiSelect extends Component {
                 multiple={data.multiple}
                 options={data.options}
               >
-                {MultiSelectData.map((data, key) => {
-                  return (
-                    <>
-                      <option
-                        value={data.value}
-                        id={`${data.options[0].name}-${key}`}
-                      >
-                        {data.options[0].label}
-                      </option>
-                      <option
-                        value={data.value}
-                        id={`${data.options[1].name}-${key}`}
-                      >
-                        {data.options[1].label}
-                      </option>
-                      <option
-                        value={data.value}
-                        id={`${data.options[2].name}-${key}`}
-                      >
-                        {data.options[2].label}
-                      </option>
-                    </>
-                  );
-                })}
+                <>
+                  <option
+                    value={data.options[0].value}
+                    id={`${data.options[0].name}-${key}`}
+                  >
+                    {data.options[0].label}
+                  </option>
+                  <option
+                    value={data.options[1].value}
+                    id={`${data.options[1].name}-${key}`}
+                  >
+                    {data.options[1].label}
+                  </option>
+                  <option
+                    value={data.options[2].value}
+                    id={`${data.options[2].name}-${key}`}
+                  >
+                    {data.options[2].label}
+                  </option>
+                </>
                 )
               </select>
             </div>

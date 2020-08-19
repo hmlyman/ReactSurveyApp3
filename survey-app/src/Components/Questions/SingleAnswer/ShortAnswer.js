@@ -20,12 +20,12 @@ class ShortAnswerQuestion extends Component {
 
   render() {
     return (
-      <div id="shortAnswerContainer" className="form-group">
-        {ShortAnswerData.map((data, key) => {
-          return (
-            <div key={key} className="textarea">
-              <h5>{data.question}</h5>
-              <form onSubmit={this.handleSubmit}>
+      <div id="shortAnswerContainer" className="container">
+        <div className="form-group" onSubmit={this.handleSubmit}>
+          {ShortAnswerData.map((data, key) => {
+            return (
+              <div key={key} className="textarea">
+                <h5>{data.question}</h5>
                 <label>
                   <input
                     type={data.type}
@@ -33,10 +33,10 @@ class ShortAnswerQuestion extends Component {
                     onChange={this.handleChange}
                   />
                 </label>
-              </form>
-            </div>
-          );
-        })}
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
