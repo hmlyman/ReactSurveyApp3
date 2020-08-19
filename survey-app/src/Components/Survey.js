@@ -41,8 +41,8 @@ class SurveyComponent extends Component {
   triggerBackendUpdate(question, surveyValues) {
     console.log(question);
     console.log(surveyValues);
-    this.setState({ setSurveyValues });
-    this.setState({ setQuestion });
+    // this.setState({ setSurveyValues });
+    // this.setState({ setQuestion });
   }
 
   render() {
