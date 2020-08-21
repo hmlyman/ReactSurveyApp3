@@ -8,7 +8,6 @@ class ThankYou extends React.Component {
         <div className="container">
           <div className="col-6 mx-auto text-center">
             <h1>Thank you for taking our survey!</h1>
-
             <Link
               name="BeginFromThankYouBtn"
               className="btn btn-primary my-5 mx-5"

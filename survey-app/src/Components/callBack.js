@@ -1,8 +1,9 @@
 import React from "react";
 
-class CallBack extends Component {
-  constructor(props) {
-    super(props);
-    this.state;
-  }
+Callback(name, value) {
+  console.log("callback", name, value);
+  let value = inlineData[name];
+  setInlineDate(inlineData);
+  console.log(inlineData)
 }
+

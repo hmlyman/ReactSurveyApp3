@@ -1,6 +1,6 @@
 import React from "react";
-import SurveyComponent from "../Components/Survey.js";
 import { Link } from "react-router-dom";
+import SurveyComponent from "../Components/Survey.js";
 
 function Survey() {
   return (

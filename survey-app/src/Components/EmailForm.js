@@ -30,6 +30,7 @@ class EmailForm extends Component {
                     type={data.type}
                     placeholder={data.placeholder}
                     onChange={this.handleChange}
+                    required={data.required}
                   />
                 </label>
               </form>
