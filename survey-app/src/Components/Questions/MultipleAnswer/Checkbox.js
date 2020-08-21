@@ -11,6 +11,7 @@ class CheckboxForm extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+    console.log("Checkbox: ", event.target.value);
   }
 
   handleSubmit(event) {
@@ -26,15 +27,15 @@ class CheckboxForm extends Component {
       >
         {CheckboxData.map((data, key) => {
           return (
-            <div key={key} className="form-check">
+            <div key={key}>
               <h5>{data.question}</h5>
-              <div>
+              <div className="form-check">
                 <input
                   className="form-check-input "
                   required={data.required}
                   name={data.name}
                   type={data.type}
-                  value={data.value}
+                  value={data.options[0].value}
                   id={`${data.options[0].name}-${key}`}
                   onChange={this.handleChange}
                 />
@@ -45,13 +46,13 @@ class CheckboxForm extends Component {
                   {data.options[0].label}
                 </label>
               </div>
-              <div>
+              <div className="form-check">
                 <input
                   className="form-check-input "
                   required={data.required}
                   name={data.name}
                   type={data.type}
-                  value={data.value}
+                  value={data.options[1].value}
                   id={`${data.options[1].name}-${key}`}
                   onChange={this.handleChange}
                 />
@@ -62,13 +63,13 @@ class CheckboxForm extends Component {
                   {data.options[1].label}
                 </label>
               </div>
-              <div>
+              <div className="form-check">
                 <input
                   className="form-check-input "
                   required={data.required}
                   name={data.name}
                   type={data.type}
-                  value={data.value}
+                  value={data.options[2].value}
                   id={`${data.options[2].name}-${key}`}
                   onChange={this.handleChange}
                 />
@@ -79,13 +80,13 @@ class CheckboxForm extends Component {
                   {data.options[2].label}
                 </label>
               </div>
-              <div>
+              <div className="form-check">
                 <input
                   className="form-check-input "
                   required={data.required}
                   name={data.name}
                   type={data.type}
-                  value={data.value}
+                  value={data.options[3].value}
                   id={`${data.options[3].name}-${key}`}
                   onChange={this.handleChange}
                 />
@@ -96,13 +97,13 @@ class CheckboxForm extends Component {
                   {data.options[3].label}
                 </label>
               </div>
-              <div>
+              <div className="form-check">
                 <input
                   className="form-check-input "
                   required={data.required}
                   name={data.name}
                   type={data.type}
-                  value={data.value}
+                  value={data.options[4].value}
                   id={`${data.options[4].name}-${key}`}
                   onChange={this.handleChange}
                 />

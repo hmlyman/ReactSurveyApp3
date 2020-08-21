@@ -12,6 +12,7 @@ class Select extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+    console.log("Select: ", event.target.value);
   }
 
   handleSubmit(event) {
@@ -25,17 +26,31 @@ class Select extends Component {
           return (
             <div key={key} className=" control-label">
               <h5>{data.question}</h5>
-              <select name={data.name} className="" multiple={data.multiple}>
+              <select
+                name={data.name}
+                className=""
+                onChange={this.handleChange}
+                required={data.required}
+              >
                 <option hidden value>
                   Select one
                 </option>
-                <option value={data.value} id={`${data.name}-${key}`}>
+                <option
+                  value={data.options[0].value}
+                  id={`${data.name}-${key}`}
+                >
                   {data.options[0].label}
                 </option>
-                <option value={data.value} id={`${data.name}-${key}`}>
+                <option
+                  value={data.options[1].value}
+                  id={`${data.name}-${key}`}
+                >
                   {data.options[1].label}
                 </option>
-                <option value={data.value} id={`${data.name}-${key}`}>
+                <option
+                  value={data.options[2].value}
+                  id={`${data.name}-${key}`}
+                >
                   {data.options[2].label}
                 </option>
               </select>

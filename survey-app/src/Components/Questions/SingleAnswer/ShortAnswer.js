@@ -12,6 +12,7 @@ class ShortAnswerQuestion extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+    console.log("ShortAnswer: ", event.target.value);
   }
 
   handleSubmit(event) {
@@ -29,7 +30,7 @@ class ShortAnswerQuestion extends Component {
                 <label>
                   <input
                     type={data.type}
-                    value={this.state.value}
+                    value={data.value}
                     onChange={this.handleChange}
                   />
                 </label>

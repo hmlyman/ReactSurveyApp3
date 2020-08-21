@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import CheckboxForm from "./Questions/MultipleAnswer/Checkbox";
-import ShortAnswer from "./Questions/SingleAnswer/ShortAnswer";
 import RadioButton from "./Questions/SingleAnswer/RadioButton";
 import Select from "./Questions/SingleAnswer/Select";
 import MultiSelect from "./Questions/MultipleAnswer/MultiSelect";
+import ShortAnswerQuestion from "./Questions/SingleAnswer/ShortAnswer";
+
+// const initialFormData = Object.freeze({
+//   Name: "",
+//   Email: "",
+// });
 
 class SurveyComponent extends Component {
   constructor(props) {
@@ -12,44 +17,61 @@ class SurveyComponent extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.triggerBackendUpdate = this.triggerBackendUpdate(this);
+    //this.triggerBackendUpdate = this.triggerBackendUpdate(this);
   }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
+  // triggerBackendUpdate = () => {
+  //   console.log(question);
+  //   console.log(surveyValues);
+  //   setPage(1);
+  //   setSurveyValues({});
+  //   setQuestion({});
+  // };
 
   handleSubmit(event) {
+    this.setState({ value: event.target.value });
     event.preventDefault();
     event.prevent();
 
-    for (let formInput of event.target.elements) {
-      console.log(formInput);
+    //   for (let formInput of event.target.elements) {
+    //     console.log(formInput);
 
-      if (formInput.type === "select") {
-        let selected = [].filter.call(
-          formInput.options,
-          (option) => option.selected
-        );
-        console.log(formInput);
-        console.log(selected);
-        console.log(formInput.options.selected);
-      }
-    }
-  }
+    //     if (formInput.type === "select") {
+    //       let selected = [].filter.call(
+    //         formInput.options,
+    //         (option) => option.selected
+    //       );
+    //       console.log(formInput);
+    //       console.log(selected);
+    //       console.log(formInput.options.selected);
+    //     }
+    //   }
 
-  triggerBackendUpdate(question, surveyValues) {
-    console.log(question);
-    console.log(surveyValues);
-    // this.setState({ setSurveyValues });
-    // this.setState({ setQuestion });
+    //   setSurveyValues(surveyValues);
+    //   const nextPage = page + 1;
+    //   const inputs = props.inputs
+    //     ? this.props.inputs.filter((inputOption) => inputOption.page === nextPage)
+    //     : [];
+
+    //   if (isFinalPage) {
+    //     triggerBackendUpdate();
+    //   } else {
+    //     if (inputs.length === 0) {
+    //       setIsFinalPage(true);
+    //     } else {
+    //       setPage(nextPage);
+    //     }
+    //   }
   }
 
   render() {
     return (
       <div id="surveyContainer">
         <form onSubmit={this.handleSubmit}>
-          <ShortAnswer />
+          <ShortAnswerQuestion />
           <RadioButton />
           <Select />
           <MultiSelect />

@@ -12,6 +12,7 @@ class MultiSelect extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+    console.log("MultiSelect: ", event.target.value);
   }
 
   handleSubmit(event) {
@@ -25,14 +26,28 @@ class MultiSelect extends Component {
           return (
             <div key={key} className="form-select">
               <h5>{data.question}</h5>
-              <select
-                name={data.name}
-                type={data.type}
-                className=""
-                multiple={data.multiple}
-                options={data.options}
-              >
-                <>
+              <div>
+                <select
+                  name={data.name}
+                  type={data.type}
+                  className=""
+                  multiple={data.multiple}
+                  onChange={this.handleChange}
+                  options={[
+                    {
+                      value: data.options[0].value,
+                      label: data.options[0].label,
+                    },
+                    {
+                      value: data.options[1].value,
+                      label: data.options[1].label,
+                    },
+                    {
+                      value: data.options[2].value,
+                      label: data.options[2].label,
+                    },
+                  ]}
+                >
                   <option
                     value={data.options[0].value}
                     id={`${data.options[0].name}-${key}`}
@@ -51,9 +66,8 @@ class MultiSelect extends Component {
                   >
                     {data.options[2].label}
                   </option>
-                </>
-                )
-              </select>
+                </select>
+              </div>
             </div>
           );
         })}

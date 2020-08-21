@@ -12,6 +12,7 @@ class NameForm extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+    console.log("Name: ", event.target.value);
   }
 
   handleSubmit(event) {

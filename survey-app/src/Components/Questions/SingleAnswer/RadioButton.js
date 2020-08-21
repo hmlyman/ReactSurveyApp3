@@ -5,13 +5,13 @@ class RadioButton extends Component {
   constructor(props) {
     super(props);
     this.state = { value: "" };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+    console.log("RadioButton: ", event.target.value);
   }
 
   handleSubmit(event) {
@@ -27,32 +27,37 @@ class RadioButton extends Component {
       >
         {RadioButtonData.map((data, key) => {
           return (
-            <div key={key} className="radio-inline control-label">
+            <div key={key}>
               <h5>{data.question}</h5>
-              <label>
+              <div className="form-check">
                 <input
-                  className=""
+                  className="form-check-input"
                   required={data.required}
                   name={data.name}
                   type={data.type}
-                  value={data.value}
+                  value={data.options[0].value}
                   id={`${data.options[0].name}-${key}`}
                   onChange={this.handleChange}
                 />
-                {data.options[0].label}
-              </label>
-              <label>
+                <label className="form-check-label">
+                  {data.options[0].label}
+                </label>
+              </div>
+              <div className="form-check">
                 <input
-                  className=""
+                  className="form-check-input"
                   required={data.required}
                   name={data.name}
                   type={data.type}
-                  value={data.value}
+                  value={data.options[1].value}
                   id={`${data.options[1].name}-${key}`}
                   onChange={this.handleChange}
                 />
-                {data.options[1].label}
-              </label>
+
+                <label className="form-check-label">
+                  {data.options[1].label}
+                </label>
+              </div>
             </div>
           );
         })}

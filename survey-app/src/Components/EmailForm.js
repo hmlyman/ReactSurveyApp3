@@ -11,6 +11,7 @@ class EmailForm extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+    console.log("Email: ", event.target.value);
   }
 
   handleSubmit(event) {

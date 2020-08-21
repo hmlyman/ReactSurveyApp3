@@ -94,6 +94,7 @@ export const SelectData = [
     name: "Select",
     question: "Which of the following is not true?",
     type: "select",
+    required: true,
     options: [
       {
         value: "I can cancel any time with no penalty.",

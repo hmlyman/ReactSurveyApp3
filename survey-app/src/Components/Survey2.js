@@ -1,219 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
 import CheckboxForm from "./Questions/MultipleAnswer/Checkbox";
-import ShortAnswer from "./Questions/SingleAnswer/ShortAnswer";
 import RadioButton from "./Questions/SingleAnswer/RadioButton";
 import Select from "./Questions/SingleAnswer/Select";
 import MultiSelect from "./Questions/MultipleAnswer/MultiSelect";
+import ShortAnswerQuestion from "./Questions/SingleAnswer/ShortAnswer";
 import { Link } from "react-router-dom";
-import { isTextInput } from "../verifiers";
 
-export const Survey2 = (props) => {
-  const [page, setPage] = useState(1);
-  const [isFinalPage, setIsFinalPage] = useState(false);
-  const [surveyValues, setSurveyValues] = useState({});
-  //const [loadedInputs, setLoadedInputs] = useState({});
-  const [question, setQuestion] = useState({});
-  const [inlineData, setInlineData] = useState({});
+const initialFormData = Object.freeze({
+  shortAnswer: { ShortAnswerQuestion },
+  radioQuestion: { RadioButton },
+  selectQuestion: { Select },
+  multiSelect: { MultiSelect },
+  checkboxQuestion: { CheckboxForm },
+});
 
-  //const { surveyId } = props;
+export const SurveyComponent = () => {
+  const [formData, updateFormData] = React.useState(initialFormData);
 
-  const triggerBackendUpdate = () => {
-    console.log(question);
-    console.log(surveyValues);
-    setPage(1);
-    setSurveyValues({});
-    setQuestion({});
-  };
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
 
-  // useEffect(() => {
-  //   if (surveyId) {
-  //     const inputDataFile = import(`./data_${surveyId}.json`);
-  //     inputDataFile.then((response) => {
-  //       setLoadedInputs(response.default);
-  //     });
-  //   }
-  // });
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    event.persist();
-    for (let formInput of event.target.elements) {
-      const isText = isTextInput(formInput.type);
-      console.log(formInput);
-
-      if (isText) {
-        surveyValues[formInput.name] = formInput.value;
-        question[formInput.question] = formInput.question;
-      }
-
-      if (formInput.type === "selectMultiple") {
-        let selected = [].filter.call(
-          formInput.options,
-          (option) => option.selected
-        );
-        console.log(formInput);
-        console.log(selected);
-        console.log(formInput.options.selected);
-
-        const values = selected.map((option) => option.value);
-        surveyValues[formInput.name] = values;
-        question[formInput.name] = formInput.question;
-      }
-
-      if (formInput.type === "checkbox") {
-        // let selected = [].filter.call(
-        //   formInput.options,
-        //   (option) => option.selected
-        // );
-        // console.log(selected);
-        // console.log(formInput.options.selected);
-        // let values = selected.map((options) => options.value);
-        surveyValues[formInput.name] = formInput.value;
-        question[formInput.name] = formInput.question;
-      }
-    }
-
-    setQuestion(question);
-
-    setSurveyValues(surveyValues);
-    const nextPage = page + 1;
-    const inputs = props.inputs
-      ? props.inputs.filter((inputOption) => inputOption.page === nextPage)
-      : [];
-
-    if (isFinalPage) {
-      triggerBackendUpdate();
-    } else {
-      if (inputs.length === 0) {
-        setIsFinalPage(true);
-      } else {
-        setPage(nextPage);
-      }
-    }
-  };
-
-  const callback = (name, value) => {
-    console.log("callback", name, value);
-    inlineData[name] = value;
-    setInlineData(inlineData);
-    console.log(inlineData);
-  };
-
-  // const validateSurvey = (json) => {
-  //   let validSurvey;
-  //   try {
-  //     validSurvey = JSON.stringify(JSON.parse(json), null, 2);
-  //   } catch (e) {
-  //     throw e;
-  //   }
-  //   return validSurvey;
-  // };
-
-  // const loadSurvey = () => {
-  //   const json =
-  //     window.localStorage.getItem(LOCALSTORAGE_KEY) ||
-  //     JSON.stringify(inlineData, null, 2);
-  //   this.setState({ json });
-  // };
-
-  const saveSurvey = async () => {
-    await fetch("/api/survey", {
-      method: "POST",
-      body: JSON.stringify(inlineData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).catch((error) => {
-      console.error(error);
+      [e.target.name]: e.target.value.trim(),
     });
   };
 
-  const inputs = props.inputs
-    ? props.inputs.filter((inputOption) => inputOption.page === page)
-    : [];
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
   return (
-    <form onSubmit={handleSubmit}>
-      {isFinalPage !== true &&
-        inputs.map((obj, index) => {
-          let inputKey = `input-${index}-${page}`;
-
-          return obj.type === "radio" || obj.type === "checkbox" ? (
-            <RadioButton
-              object={obj}
-              type={obj.type}
-              required={props.required}
-              triggerCallback={callback}
-              question={obj.question}
-              defaultValue={obj.defaultValue}
-              name={obj.name}
-              key={inputKey}
-            />
-          ) : obj.type === "checkbox" ? (
-            <CheckboxForm
-              object={obj}
-              type={obj.type}
-              required={props.required}
-              triggerCallback={callback}
-              question={obj.question}
-              defaultValue={obj.defaultValue}
-              name={obj.name}
-              key={inputKey}
-            />
-          ) : obj.type === "select" ? (
-            <Select
-              className="form-control mb-3 mt-3"
-              object={obj}
-              type={obj.type}
-              question={obj.question}
-              required={props.required}
-              triggerCallback={callback}
-              defaultValue={obj.defaultValue}
-              name={obj.name}
-              key={inputKey}
-            />
-          ) : obj.type === "selectMultiple" ? (
-            <MultiSelect
-              className="form-control mb-3 mt-3"
-              object={obj}
-              type={obj.type}
-              question={obj.question}
-              required={props.required}
-              triggerCallback={callback}
-              defaultValue={obj.defaultValue}
-              name={obj.name}
-              key={inputKey}
-            />
-          ) : (
-            <ShortAnswer
-              className="mb-3 mt-3 form-control"
-              object={obj}
-              type={obj.type}
-              question={props.question}
-              required={props.required}
-              triggerCallback={callback}
-              placeholder={obj.placeholder}
-              defaultValue={obj.defaultValue}
-              name={obj.name}
-              key={inputKey}
-            />
-          );
-        })}
-
-      {isFinalPage !== true ? (
-        <button name="continue-btn" className="btn btn-primary my-5 mx-5">
-          Continue
-        </button>
-      ) : (
-        <Link to="/thankyou">
-          <button
-            onClick={saveSurvey}
-            type="button"
-            className="btn btn-primary my-5 mx-5"
-          >
-            Submit Survey
-          </button>
-        </Link>
-      )}
-    </form>
+    <div id="surveyContainer">
+      <form onSubmit={handleSubmit}>
+        <ShortAnswerQuestion name="shortAnswer" onChange={handleChange} />
+        <RadioButton name="radioQuestion" onChange={handleChange} />
+        <Select onChange={handleChange} />
+        <MultiSelect onChange={handleChange} />
+        <CheckboxForm onChange={handleChange} />
+      </form>
+      <Link
+        onClick={handleSubmit}
+        name="submitSurveyButton"
+        className="btn btn-primary my-5 mx-5"
+        to="/thankyou"
+      >
+        Submit Survey
+      </Link>
+    </div>
   );
 };
