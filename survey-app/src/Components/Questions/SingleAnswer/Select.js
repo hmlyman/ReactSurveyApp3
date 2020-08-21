@@ -12,6 +12,7 @@ class Select extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+
     console.log("Select: ", event.target.value);
   }
 
