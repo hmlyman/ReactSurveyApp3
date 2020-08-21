@@ -40,6 +40,7 @@ class SurveyComponent extends Component {
     }
   }
 
+<<<<<<< HEAD
   // triggerBackendUpdate(question, surveyValues) {
   //   console.log(question);
   //   console.log(surveyValues);
@@ -54,6 +55,14 @@ class SurveyComponent extends Component {
   //   setInlineDate(inlineData);
   //   console.log(inlineData);
   //}
+=======
+  triggerBackendUpdate(question, surveyValues) {
+    console.log(question);
+    console.log(surveyValues);
+    this.setState({ setSurveyValues });
+    this.setState({ setQuestion });
+  }
+>>>>>>> parent of 9cf728a... comment out
 
   render() {
     return (
