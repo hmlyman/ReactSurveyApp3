@@ -20,20 +20,18 @@ class EmailForm extends Component {
 
   render() {
     return (
-      <div id="emailContainer" className="container">
+      <div id="emailContainer" className="form-group">
         {EmailFormData.map((data, key) => {
           return (
             <div key={key}>
-              <form onSubmit={this.handleSubmit}>
-                <label>
-                  <input
-                    name={data.name}
-                    type={data.type}
-                    placeholder={data.placeholder}
-                    onChange={this.handleChange}
-                    required={data.required}
-                  />
-                </label>
+              <form onChange={this.handleChange}>
+                <input
+                  className="form-control"
+                  name={data.name}
+                  type={data.type}
+                  placeholder={data.placeholder}
+                  required={data.required}
+                />
               </form>
             </div>
           );

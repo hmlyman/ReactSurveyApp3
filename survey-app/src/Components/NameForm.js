@@ -21,20 +21,17 @@ class NameForm extends Component {
 
   render() {
     return (
-      <div id="nameContainer" className="container">
+      <div id="nameContainer" className="form-group">
         {NameFormData.map((data, key) => {
           return (
             <div key={key}>
-              <form onSubmit={this.handleSubmit}>
-                <label>
-                  <input
-                    name={data.name}
-                    type={data.type}
-                    required={true}
-                    placeholder={data.placeholder}
-                    onChange={this.handleChange}
-                  />
-                </label>
+              <form onChange={this.handleChange} required={data.required}>
+                <input
+                  className="form-control"
+                  name={data.name}
+                  type={data.type}
+                  placeholder={data.placeholder}
+                />
               </form>
             </div>
           );
