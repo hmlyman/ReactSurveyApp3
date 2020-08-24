@@ -36,6 +36,7 @@ class NameForm extends Component {
   }
 
   handleSubmit(event) {
+    alert("A name was submitted: " + this.state.value);
     event.preventDefault();
     if (validateForm(this.state.errors)) {
       console.info("Valid Name");
@@ -57,9 +58,8 @@ class NameForm extends Component {
                   name={data.name}
                   type={data.type}
                   placeholder={data.placeholder}
-                  required={data.required}
+                  required={this.props.required}
                   onChange={this.handleChange}
-                  noValidate
                 />
                 {errors.fullName.length > 0 && (
                   <span className="error">{errors.fullName}</span>

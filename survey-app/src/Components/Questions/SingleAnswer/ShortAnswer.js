@@ -22,12 +22,7 @@ class ShortAnswerQuestion extends Component {
   render() {
     return (
       <div className="container">
-        <div
-          id="shortAnswerContainer"
-          className="form-group"
-          onSubmit={this.handleSubmit}
-          noValidate
-        >
+        <div id="shortAnswerContainer" className="form-group" noValidate>
           {ShortAnswerData.map((data, key) => {
             return (
               <div key={key} className="textarea">

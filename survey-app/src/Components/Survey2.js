@@ -4,9 +4,13 @@ import RadioButton from "./Questions/SingleAnswer/RadioButton";
 import Select from "./Questions/SingleAnswer/Select";
 import MultiSelect from "./Questions/MultipleAnswer/MultiSelect";
 import ShortAnswerQuestion from "./Questions/SingleAnswer/ShortAnswer";
+import NameForm from "./NameForm";
+import EmailForm from "./EmailForm";
 import { Link } from "react-router-dom";
 
 const initialFormData = Object.freeze({
+  nameForm: { NameForm },
+  emailForm: { EmailForm },
   shortAnswer: { ShortAnswerQuestion },
   radioQuestion: { RadioButton },
   selectQuestion: { Select },
@@ -17,22 +21,26 @@ const initialFormData = Object.freeze({
 export const SurveyComponent = () => {
   const [formData, updateFormData] = React.useState(initialFormData);
 
-  const handleChange = (e) => {
+  const handleChange = (event) => {
     updateFormData({
       ...formData,
 
-      [e.target.name]: e.target.value.trim(),
+      [event.target.name]: event.target.value.trim(),
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     console.log(formData);
   };
   return (
     <div id="surveyContainer">
       <form onSubmit={handleSubmit}>
-        <ShortAnswerQuestion name="shortAnswer" onChange={handleChange} />
+        <ShortAnswerQuestion
+          name="shortAnswer"
+          onChange={handleChange}
+          required
+        />
         <RadioButton name="radioQuestion" onChange={handleChange} />
         <Select onChange={handleChange} />
         <MultiSelect onChange={handleChange} />
@@ -41,10 +49,12 @@ export const SurveyComponent = () => {
       <button
         onClick={handleSubmit}
         name="submitSurveyButton"
-        className="btn btn-primary my-5 mx-5"
+        className="btn btn-primary my-5 mx-5 "
         type="submit"
       >
-        <Link to="/thankyou">Submit Survey</Link>
+        <Link className="text-white" to="/thankyou">
+          Submit Survey
+        </Link>
       </button>
     </div>
   );
