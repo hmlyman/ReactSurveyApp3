@@ -26,6 +26,7 @@ class ShortAnswerQuestion extends Component {
           id="shortAnswerContainer"
           className="form-group"
           onSubmit={this.handleSubmit}
+          noValidate
         >
           {ShortAnswerData.map((data, key) => {
             return (

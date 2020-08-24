@@ -20,6 +20,7 @@ export const ShortAnswerData = [
   {
     page: 2,
     name: "textArea",
+    required: true,
     type: "textArea",
     placeholder: "Enter response here.",
     question:

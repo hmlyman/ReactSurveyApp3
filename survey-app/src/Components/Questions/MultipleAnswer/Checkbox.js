@@ -10,8 +10,17 @@ class CheckboxForm extends Component {
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
-    console.log("Checkbox: ", event.target.value);
+    const input = event.target.value;
+    this.setState(
+      {
+        value: this.state.value.includes(input)
+          ? this.state.value.filter((item) => item !== input)
+          : [...this.state.value, input],
+      },
+      () => {
+        console.log("CheckBox: ", this.state.value);
+      }
+    );
   }
 
   handleSubmit(event) {

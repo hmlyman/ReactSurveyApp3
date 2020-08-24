@@ -4,6 +4,8 @@ import RadioButton from "./Questions/SingleAnswer/RadioButton";
 import Select from "./Questions/SingleAnswer/Select";
 import MultiSelect from "./Questions/MultipleAnswer/MultiSelect";
 import ShortAnswerQuestion from "./Questions/SingleAnswer/ShortAnswer";
+import { Link } from "react-router-dom";
+import { data } from "jquery";
 
 // const initialFormData = Object.freeze({
 //   Name: "",
@@ -33,8 +35,8 @@ class SurveyComponent extends Component {
 
   handleSubmit(event) {
     this.setState({ value: event.target.value });
+    console.log("Submitted data: ", event.target.value);
     event.preventDefault();
-    event.prevent();
 
     //   for (let formInput of event.target.elements) {
     //     console.log(formInput);
@@ -70,13 +72,22 @@ class SurveyComponent extends Component {
   render() {
     return (
       <div id="surveyContainer">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} required={data.required}>
           <ShortAnswerQuestion />
           <RadioButton />
           <Select />
           <MultiSelect />
           <CheckboxForm />
         </form>
+
+        <Link
+          onClick={this.handleSubmit}
+          name="submitSurveyButton"
+          className="btn btn-primary my-5 mx-5"
+          to="/thankyou"
+        >
+          Submit Survey
+        </Link>
       </div>
     );
   }

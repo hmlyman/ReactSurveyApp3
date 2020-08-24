@@ -10,8 +10,17 @@ class MultiSelect extends Component {
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
-    console.log("MultiSelect: ", event.target.value);
+    const input = event.target.value;
+    this.setState(
+      {
+        value: this.state.value.includes(input)
+          ? this.state.value.filter((item) => item !== input)
+          : [...this.state.value, input],
+      },
+      () => {
+        console.log("MultiSelect: ", this.state.value);
+      }
+    );
   }
 
   handleSubmit(event) {
