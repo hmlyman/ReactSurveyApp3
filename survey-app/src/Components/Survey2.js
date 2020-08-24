@@ -8,7 +8,7 @@ import NameForm from "./NameForm";
 import EmailForm from "./EmailForm";
 import { Link } from "react-router-dom";
 
-const initialFormData = Object.freeze({
+const initialFormData = Object({
   nameForm: { NameForm },
   emailForm: { EmailForm },
   shortAnswer: { ShortAnswerQuestion },
@@ -47,10 +47,10 @@ export const SurveyComponent = () => {
         <CheckboxForm onChange={handleChange} />
       </form>
       <button
-        onClick={handleSubmit}
         name="submitSurveyButton"
         className="btn btn-primary my-5 mx-5 "
         type="submit"
+        onClick={handleSubmit}
       >
         <Link className="text-white" to="/thankyou">
           Submit Survey
