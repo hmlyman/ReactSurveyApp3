@@ -5,7 +5,6 @@ import Select from "./Questions/SingleAnswer/Select";
 import MultiSelect from "./Questions/MultipleAnswer/MultiSelect";
 import ShortAnswerQuestion from "./Questions/SingleAnswer/ShortAnswer";
 import { Link } from "react-router-dom";
-import { data } from "jquery";
 
 const initialFormData = Object.freeze({
   shortAnswer: { ShortAnswerQuestion },
@@ -32,21 +31,21 @@ export const SurveyComponent = () => {
   };
   return (
     <div id="surveyContainer">
-      <form onSubmit={handleSubmit} required={data.required}>
+      <form onSubmit={handleSubmit}>
         <ShortAnswerQuestion name="shortAnswer" onChange={handleChange} />
         <RadioButton name="radioQuestion" onChange={handleChange} />
         <Select onChange={handleChange} />
         <MultiSelect onChange={handleChange} />
         <CheckboxForm onChange={handleChange} />
       </form>
-      <Link
+      <button
         onClick={handleSubmit}
         name="submitSurveyButton"
         className="btn btn-primary my-5 mx-5"
-        to="/thankyou"
+        type="submit"
       >
-        Submit Survey
-      </Link>
+        <Link to="/thankyou">Submit Survey</Link>
+      </button>
     </div>
   );
 };
