@@ -67,7 +67,7 @@
   },
   {
     "page": 2,
-    "name": "mySelection",
+    "name": "Select",
     "question": "Which of the following is not true?",
     "type": "select",
     "options": [
@@ -91,7 +91,7 @@
   },
   {
     "page": 2,
-    "name": "multipleSelection",
+    "name": "multiSelect",
     "question": "Select all that apply:",
     "type": "selectMultiple",
     "multiple": true,
