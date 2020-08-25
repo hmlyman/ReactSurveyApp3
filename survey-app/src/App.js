@@ -8,9 +8,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: "" };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
@@ -21,28 +21,42 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <NameForm required onChange={this.handleChange} />
-          <EmailForm />
-          <button
-            className="btn btn-primary mt-4 mb-2 mx-5"
-            type="submit"
-            onSubmit={this.handleSubmit}
-          >
-            <Link className="text-white" name="BeginSurveyButton" to="/survey">
-              Begin Survey
+      <>
+        <div className="container">
+          <nav className="navbar">
+            <Link
+              name="loadSurveyButton"
+              className="btn btn-primary my-2 mx-5"
+              to="/loadedSurvey"
+            >
+              Load Survey
             </Link>
-          </button>
-          <Link
-            name="loadSurveyButton"
-            className="btn btn-primary my-2 mx-5"
-            to="/loadedSurvey"
-          >
-            Load Survey
-          </Link>
-        </header>
-      </div>
+          </nav>
+        </div>
+        <div className="container">
+          <div className="col-6 mx-auto text-left">
+            <NameForm required />
+            <EmailForm />
+          </div>
+          <div className="col-6 mx-auto text-center">
+            <div className="button">
+              <button
+                className="btn btn-primary mt-4 mb-2 mx-5"
+                type="submit"
+                onClick={this.handleSubmit}
+              >
+                <Link
+                  className="text-white "
+                  name="BeginSurveyButton"
+                  to="/survey"
+                >
+                  Begin Survey
+                </Link>
+              </button>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 }

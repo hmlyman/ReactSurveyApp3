@@ -32,7 +32,7 @@ class RadioButton extends Component {
               <div className="form-check">
                 <input
                   className="form-check-input"
-                  required={data.required}
+                  required={this.props.required}
                   name={data.name}
                   type={data.type}
                   value={data.options[0].value}

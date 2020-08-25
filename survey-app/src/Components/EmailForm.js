@@ -24,13 +24,14 @@ class EmailForm extends Component {
         {EmailFormData.map((data, key) => {
           return (
             <div key={key}>
-              <form onChange={this.handleChange}>
+              <form>
                 <input
                   className="form-control"
                   name={data.name}
                   type={data.type}
                   placeholder={data.placeholder}
                   required={data.required}
+                  onChange={this.handleChange}
                 />
               </form>
             </div>
