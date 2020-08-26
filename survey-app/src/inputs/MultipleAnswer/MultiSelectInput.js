@@ -17,20 +17,24 @@ export const MultiSelectInput = (props) => {
     required: props.required,
     question: props.question,
     type: inputType,
-    name: props.name ? props.name : `${props.type}_${props.key}`,
+    name: props.name ? props.name : `${inputType}_${props.key}`,
   };
-
+  console.log(value);
   return (
     <>
-      <div id={props.name} className="container">
+      <div id={object.name} className="container">
         <h5>{props.question}</h5>
-        <select {...inputProps} name={props.name} multiple={props.multiple}>
+        <select {...inputProps} name={object.name} multiple={object.multiple}>
           <option hidden value>
             Select All That Apply
           </option>
           {object.options.map((data, index) => {
             return (
-              <option value={data.value} className="form-check">
+              <option
+                value={data.value}
+                className="form-check"
+                key={`$object.type}-${index}`}
+              >
                 {data.label}
               </option>
             );

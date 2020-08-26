@@ -27,8 +27,7 @@ export const SelectInput = (props) => {
         <h5>{props.question}</h5>
         <select {...inputProps} name={props.name}>
           <option hidden value>
-            {" "}
-            Select One{" "}
+            Select One
           </option>
           {object.options.map((data, index) => {
             return (

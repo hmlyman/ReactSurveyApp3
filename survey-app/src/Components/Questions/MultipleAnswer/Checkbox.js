@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { CheckboxData } from "../../../Data/SurveyData";
 import CheckboxInput from "../../../inputs/MultipleAnswer/CheckboxInput";
 
 class CheckboxForm extends Component {
@@ -29,7 +28,7 @@ class CheckboxForm extends Component {
   }
 
   render() {
-    return <CheckboxInput />;
+    return <CheckboxInput onChange={this.handleChange} />;
   }
 }
 

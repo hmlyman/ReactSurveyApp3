@@ -3,6 +3,7 @@ import "./App.css";
 import NameForm from "./Components/NameForm.js";
 import EmailForm from "./Components/EmailForm.js";
 import { Link } from "react-router-dom";
+import SurveyData from "./Data/SurveyData.json";
 
 class App extends React.Component {
   constructor(props) {
