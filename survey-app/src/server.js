@@ -1,7 +1,7 @@
 var fs = require("fs");
 var express = require("express");
 var bodyParser = require("body-parser");
-var jsonData = require("./data.json");
+var jsonData = require("./Data/SurveyData.json");
 var app = express();
 var router = express.Router();
 

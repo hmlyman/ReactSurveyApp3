@@ -3,7 +3,7 @@ import { useInputChange } from "../../hooks";
 import { isTextInput } from "../../validators";
 
 export const SelectInput = (props) => {
-  const { object } = props;
+  console.log(props);
   const inputType = isTextInput(props.type) ? props.type : "select";
   const { value, handleChange } = useInputChange(
     props.defaultValue,
@@ -18,6 +18,7 @@ export const SelectInput = (props) => {
     required: props.required,
     question: props.question,
     type: inputType,
+    options: props.options,
     name: props.name ? props.name : `${inputType}_${props.key}`,
   };
 
@@ -29,12 +30,12 @@ export const SelectInput = (props) => {
           <option hidden value>
             Select One
           </option>
-          {object.options.map((data, index) => {
+          {props.options.map((data, index) => {
             return (
               <option
                 value={data.value}
-                id={`${object.name}-${index}`}
-                key={`${object.type}-${index}`}
+                id={`${props.name}-${index}`}
+                key={`${props.type}-${index}`}
                 className="form-check"
               >
                 {data.label}

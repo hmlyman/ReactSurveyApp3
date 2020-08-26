@@ -48,6 +48,19 @@ export const SurveyComponent = (props) => {
     setSurveyValues(surveyValues);
     triggerBackendUpdate();
   };
+  const handleChange = (event) => {
+    const input = event.target.value;
+    this.setState(
+      {
+        value: this.state.value.includes(input)
+          ? this.state.value.filter((item) => item !== input)
+          : [...this.state.value, input],
+      },
+      () => {
+        console.log("CheckBox: ", this.state.value);
+      }
+    );
+  };
 
   const callback = (name, value) => {
     console.log("Form Data: ", name, value);
@@ -85,6 +98,7 @@ export const SurveyComponent = (props) => {
                 question={data.question}
                 defaultValue={data.defaultValue}
                 type={data.type}
+                options={data.options}
               />
             ) : data.type === "select" ? (
               <SelectInput
@@ -94,6 +108,7 @@ export const SurveyComponent = (props) => {
                 question={data.question}
                 defaultValue={data.defaultValue}
                 type={data.type}
+                options={data.options}
               />
             ) : data.type === "multiselect" ? (
               <MultiSelectInput
@@ -104,6 +119,7 @@ export const SurveyComponent = (props) => {
                 defaultValue={data.defaultValue}
                 type={data.type}
                 multiple={data.multiple}
+                options={data.options}
               />
             ) : data.type === "checkbox" ? (
               <CheckboxInput
@@ -114,6 +130,8 @@ export const SurveyComponent = (props) => {
                 defaultValue={data.defaultValue}
                 type={data.type}
                 multiple={data.multiple}
+                options={data.options}
+                onChange={handleChange}
               />
             ) : (
               <ShortAnswerInput

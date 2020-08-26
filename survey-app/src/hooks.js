@@ -5,13 +5,12 @@ export const useInputChange = (customValue, callback) => {
   console.log(customValue);
   const handleChange = (event) => {
     const newValue = event.target.value;
+    console.log(newValue);
     setValue(newValue);
     if (callback) {
       callback(event.target.name, newValue);
     }
-    console.log(event.target.value);
   };
-  console.log(value);
   return {
     value: value,
     handleChange: handleChange,

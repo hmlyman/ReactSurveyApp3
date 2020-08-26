@@ -15,6 +15,7 @@ export const MultiSelectInput = (props) => {
     onChange: handleChange,
     value: value,
     required: props.required,
+    options: props.options,
     question: props.question,
     type: inputType,
     name: props.name ? props.name : `${inputType}_${props.key}`,
@@ -28,7 +29,7 @@ export const MultiSelectInput = (props) => {
           <option hidden value>
             Select All That Apply
           </option>
-          {object.options.map((data, index) => {
+          {props.options.map((data, index) => {
             return (
               <option
                 value={data.value}

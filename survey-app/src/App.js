@@ -3,7 +3,7 @@ import "./App.css";
 import NameForm from "./Components/NameForm.js";
 import EmailForm from "./Components/EmailForm.js";
 import { Link } from "react-router-dom";
-import SurveyData from "./Data/SurveyData.json";
+// import SurveyData from "./Data/SurveyData.json";
 
 class App extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class App extends React.Component {
         </div>
         <div className="container">
           <div className="col-6 mx-auto text-left">
-            <NameForm required />
+            <NameForm />
             <EmailForm />
           </div>
           <div className="col-6 mx-auto text-center">
