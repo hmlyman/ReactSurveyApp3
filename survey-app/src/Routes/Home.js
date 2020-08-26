@@ -1,9 +1,9 @@
 import React from "react";
-import "./App.css";
-import NameForm from "./Components/NameForm.js";
-import EmailForm from "./Components/EmailForm.js";
+import "../App.css";
+import NameForm from "../Components/NameComponent";
+import EmailForm from "../Components/EmailComponent.js";
 import { Link } from "react-router-dom";
-// import SurveyData from "./Data/SurveyData.json";
+// import NameEmailData from "../Data/NameEmailData.json";
 
 class App extends React.Component {
   constructor(props) {

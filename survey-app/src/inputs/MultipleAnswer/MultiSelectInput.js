@@ -3,7 +3,7 @@ import { useInputChange } from "../../hooks";
 import { isTextInput } from "../../validators";
 
 export const MultiSelectInput = (props) => {
-  const { object } = props;
+  console.log(props);
   const inputType = isTextInput(props.type) ? props.type : "multiSelect";
   const { value, handleChange } = useInputChange(
     props.defaultValue,
@@ -23,9 +23,10 @@ export const MultiSelectInput = (props) => {
   console.log(value);
   return (
     <>
-      <div id={object.name} className="container">
+      <div id={props.name} className="container">
         <h5>{props.question}</h5>
-        <select {...inputProps} name={object.name} multiple={object.multiple}>
+
+        <select {...inputProps} name={props.name} multiple={props.multiple}>
           <option hidden value>
             Select All That Apply
           </option>
@@ -34,7 +35,7 @@ export const MultiSelectInput = (props) => {
               <option
                 value={data.value}
                 className="form-check"
-                key={`$object.type}-${index}`}
+                key={`${props.type}-${index}`}
               >
                 {data.label}
               </option>

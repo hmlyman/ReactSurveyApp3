@@ -19,7 +19,6 @@ export const CheckboxInput = (props) => {
     options: props.options,
     type: inputType,
     name: props.name ? props.name : `${props.type}_${props.key}`,
-    checked: false,
   };
 
   return (

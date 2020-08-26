@@ -29,10 +29,14 @@ class CheckboxForm extends Component {
 
   render() {
     return (
-      <CheckboxInput
-        onChange={this.handleChange}
-        className="form-check-input"
-      />
+      <div className="container">
+        <div className="form-check">
+          <CheckboxInput
+            onChange={this.handleChange}
+            className="form-check-input"
+          />
+        </div>
+      </div>
     );
   }
 }

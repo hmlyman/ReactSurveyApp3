@@ -110,7 +110,7 @@ export const SurveyComponent = (props) => {
                 type={data.type}
                 options={data.options}
               />
-            ) : data.type === "multiselect" ? (
+            ) : data.type === "multiSelect" ? (
               <MultiSelectInput
                 name={data.name}
                 triggerCallback={callback}

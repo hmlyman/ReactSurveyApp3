@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SurveyComponent } from "../Components/Survey2";
+import { SurveyComponent } from "../Components/SurveyComponent";
 import SurveyData from "../Data/SurveyData.json";
 
 const SurveyRoute = () => {
