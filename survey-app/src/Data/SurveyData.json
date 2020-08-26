@@ -93,7 +93,7 @@
     "page": 2,
     "name": "multiSelect",
     "question": "Select all that apply:",
-    "type": "selectMultiple",
+    "type": "multiSelect",
     "multiple": true,
     "options": [
       {

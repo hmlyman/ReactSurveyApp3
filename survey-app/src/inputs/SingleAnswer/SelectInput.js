@@ -1,49 +1,49 @@
 import React from "react";
 import { useInputChange } from "../../hooks";
+import { isTextInput } from "../../validators";
 
-class SelectInput extends React.Component {
-  constructor(props) {
-    super(props);
-    const { value, handleChange } = useInputChange(
-      props.defaultValue,
-      props.triggerCallback
-    );
-    const inputProps = {
-      className: props.className ? props.className : "form-control",
-      onChange: handleChange,
-      value: value,
-      required: props.required,
-      question: props.question,
-      type: props.type,
-      name: props.name ? props.name : `${props.type}_${props.key}`,
-    };
+export const SelectInput = (props) => {
+  const { object } = props;
+  const inputType = isTextInput(props.type) ? props.type : "select";
+  const { value, handleChange } = useInputChange(
+    props.defaultValue,
+    props.triggerCallback,
+    inputType
+  );
 
-    return (
-      <>
-        <div id={props.name}>
-          <h5>{props.question}</h5>
-          <select {...inputProps}>
-            <option hidden value>
-              {" "}
-              Select One{" "}
-            </option>
-            {props.options.map((data, index) => {
-              return (
-                <option
-                  value={data.value}
-                  id={`${props.name}-${index}`}
-                  key={`${props.type}-${index}`}
-                  className="form-check"
-                >
-                  {data.label}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-      </>
-    );
-  }
-}
+  const inputProps = {
+    className: props.className ? props.className : "form-control",
+    onChange: handleChange,
+    value: value,
+    required: props.required,
+    question: props.question,
+    type: inputType,
+    name: props.name ? props.name : `${inputType}_${props.key}`,
+  };
 
-export default SelectInput;
+  return (
+    <>
+      <div id={props.name}>
+        <h5>{props.question}</h5>
+        <select {...inputProps} name={props.name}>
+          <option hidden value>
+            {" "}
+            Select One{" "}
+          </option>
+          {object.options.map((data, index) => {
+            return (
+              <option
+                value={data.value}
+                id={`${object.name}-${index}`}
+                key={`${object.type}-${index}`}
+                className="form-check"
+              >
+                {data.label}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+    </>
+  );
+};
