@@ -49,5 +49,3 @@ export const CheckboxInput = (props) => {
     </>
   );
 };
-
-export default CheckboxInput;

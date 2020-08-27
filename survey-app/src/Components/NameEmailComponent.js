@@ -36,6 +36,18 @@ export const NameEmailComponent = (props) => {
     console.log("Name: ", event.target.value);
   };
 
+  const saveSurvey = async () => {
+    await fetch("/api/survey", {
+      method: "POST",
+      body: JSON.stringify(inlineData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).catch((error) => {
+      console.error(error);
+    });
+  };
+
   const inputs = props.inputs
     ? props.inputs.filter((inputOption) => inputOption)
     : [];
@@ -55,6 +67,7 @@ export const NameEmailComponent = (props) => {
                 placeholder={data.placeholder}
                 required={data.required}
                 onChange={handleChange}
+                key={inputKey}
               />
             ) : (
               <EmailInput
@@ -65,6 +78,7 @@ export const NameEmailComponent = (props) => {
                 placeholder={data.placeholder}
                 required={data.required}
                 onChange={handleChange}
+                key={inputKey}
               />
             );
           })}
@@ -73,7 +87,7 @@ export const NameEmailComponent = (props) => {
               <button
                 className="btn btn-primary mt-4 mb-2 mx-5"
                 type="submit"
-                onClick={handleSubmit}
+                onClick={saveSurvey}
               >
                 <Link
                   className="text-white "

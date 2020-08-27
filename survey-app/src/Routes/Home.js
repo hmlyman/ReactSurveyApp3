@@ -5,9 +5,6 @@ import { NameEmailComponent } from "../Components/NameEmailComponent";
 import NameEmailData from "../Data/NameEmailData.json";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <>

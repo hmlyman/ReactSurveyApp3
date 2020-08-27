@@ -4,7 +4,7 @@ import { isTextInput } from "../../validators";
 
 export const RadioButtonInput = (props) => {
   const inputType = isTextInput(props.type) ? props.type : "";
-  const { value, handleChange } = useInputChange(
+  const { handleChange } = useInputChange(
     props.defaultValue,
     props.triggerCallback,
     inputType
@@ -31,10 +31,10 @@ export const RadioButtonInput = (props) => {
                 <input
                   {...inputProps}
                   className="form-check-input"
+                  value={data.value}
                   id={`${props.name}-${index}`}
                 />
                 <label
-                  value={data.value}
                   className="radio-inline control-label"
                   htmlFor={`${props.name}-${index}`}
                 >

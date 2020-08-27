@@ -26,9 +26,7 @@ export const NameInput = (props) => {
   return (
     <>
       <div id={props.name}>
-        <form>
-          <text {...inputProps} />
-        </form>
+        <input {...inputProps} />
       </div>
     </>
   );
