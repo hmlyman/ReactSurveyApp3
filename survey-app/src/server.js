@@ -1,7 +1,7 @@
 var fs = require("fs");
 var express = require("express");
 var bodyParser = require("body-parser");
-var jsonData = require("./Data/SurveyData.json");
+var jsonData = require("./Data/SubmittedData.json");
 var app = express();
 var router = express.Router();
 
@@ -20,7 +20,7 @@ router
     const data = jsonData;
     const newData = req.body;
     data.push(newData);
-    fs.writeFile("SurveyApp/data.json", JSON.stringify(data), (error) => {
+    fs.writeFile("./Data/SubmittedData.json", JSON.stringify(data), (error) => {
       if (error) {
         throw error;
       }

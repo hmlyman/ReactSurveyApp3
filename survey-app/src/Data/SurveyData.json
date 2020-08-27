@@ -53,7 +53,7 @@
   },
   {
     "page": 2,
-    "name": "Select",
+    "name": "mySelection",
     "question": "Which of the following is not true?",
     "type": "select",
     "options": [
@@ -77,9 +77,9 @@
   },
   {
     "page": 2,
-    "name": "multiSelect",
+    "name": "multipleSelection",
     "question": "Select all that apply:",
-    "type": "multiSelect",
+    "type": "selectMultiple",
     "multiple": true,
     "options": [
       {
@@ -87,8 +87,8 @@
         "label": "I am happy with the system as it has been explained to me."
       },
       {
-        "value": "I am happy with the level of customer service I have receievd today.",
-        "label": "I am happy with the level of customer service I have receievd today."
+        "value": "I am happy with the level of customer service I have received today.",
+        "label": "I am happy with the level of customer service I have received today."
       },
       {
         "value": "I am happy with the representatives who have helped protect my home today.",

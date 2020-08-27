@@ -5,7 +5,7 @@ import { isTextInput } from "../../validators";
 export const MultiSelectInput = (props) => {
   console.log(props);
   const inputType = isTextInput(props.type) ? props.type : "multiSelect";
-  const { value, handleChange } = useInputChange(
+  const { handleChange } = useInputChange(
     props.defaultValue,
     props.triggerCallback,
     inputType
@@ -13,28 +13,25 @@ export const MultiSelectInput = (props) => {
   const inputProps = {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,
-    value: value,
+    value: props.value,
     required: props.required,
     options: props.options,
     question: props.question,
     type: inputType,
     name: props.name ? props.name : `${inputType}_${props.key}`,
   };
-  console.log(value);
+
   return (
     <>
-      <div id={props.name} className="container">
+      <div id={props.name}>
         <h5>{props.question}</h5>
 
         <select {...inputProps} name={props.name} multiple={props.multiple}>
-          <option hidden value>
-            Select All That Apply
-          </option>
           {props.options.map((data, index) => {
             return (
               <option
                 value={data.value}
-                className="form-check"
+                className="select"
                 key={`${props.type}-${index}`}
               >
                 {data.label}

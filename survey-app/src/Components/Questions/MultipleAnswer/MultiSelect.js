@@ -28,7 +28,11 @@ class MultiSelect extends Component {
   }
 
   render() {
-    return <MultiSelectInput onChange={this.handleChange} />;
+    return (
+      <div>
+        <MultiSelectInput onChange={this.handleChange} />;
+      </div>
+    );
   }
 }
 

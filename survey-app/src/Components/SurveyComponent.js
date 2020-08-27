@@ -48,6 +48,14 @@ export const SurveyComponent = (props) => {
     setSurveyValues(surveyValues);
     triggerBackendUpdate();
   };
+
+  const callback = (name, value) => {
+    console.log("Form Data: ", name, ": ", value);
+    inlineData[name] = value;
+    setInlineData(inlineData);
+    console.log(inlineData);
+  };
+
   const handleChange = (event) => {
     const input = event.target.value;
     this.setState(
@@ -60,13 +68,6 @@ export const SurveyComponent = (props) => {
         console.log("CheckBox: ", this.state.value);
       }
     );
-  };
-
-  const callback = (name, value) => {
-    console.log("Form Data: ", name, value);
-    inlineData[name] = value;
-    setInlineData(inlineData);
-    console.log(inlineData);
   };
 
   const saveSurvey = async () => {
@@ -146,17 +147,18 @@ export const SurveyComponent = (props) => {
             );
           })}
         </form>
-
-        <Link className="text-white" to="/thankyou">
-          <button
-            name="submitSurveyButton"
-            className="btn btn-primary my-5 mx-5 "
-            type="submit"
-            onClick={saveSurvey}
-          >
-            Submit Survey
-          </button>
-        </Link>
+        <div className="col text-center">
+          <Link className="text-white" to="/thankyou">
+            <button
+              name="submitSurveyButton"
+              className="btn btn-primary my-5 mx-5 "
+              type="submit"
+              onClick={saveSurvey}
+            >
+              Submit Survey
+            </button>
+          </Link>
+        </div>
       </div>
     </>
   );

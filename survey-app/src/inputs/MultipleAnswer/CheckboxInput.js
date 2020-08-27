@@ -23,9 +23,9 @@ export const CheckboxInput = (props) => {
 
   return (
     <>
-      <div id={props.name} className="container">
+      <div id={props.name}>
+        <h5 className="control-label">{question}</h5>
         <div className="form-check">
-          <h5>{question}</h5>
           {props.options.map((data, index) => {
             return (
               <div key={`${props.type}-${index}`}>

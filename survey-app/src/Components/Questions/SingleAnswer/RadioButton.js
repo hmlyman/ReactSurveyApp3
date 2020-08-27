@@ -19,7 +19,16 @@ class RadioButton extends Component {
   }
 
   render() {
-    return <RadioButtonInput onChange={this.handleChange} />;
+    return (
+      <div className="container">
+        <div className="form-check">
+          <RadioButtonInput
+            onChange={this.handleChange}
+            className="form-check-input"
+          />
+        </div>
+      </div>
+    );
   }
 }
 
