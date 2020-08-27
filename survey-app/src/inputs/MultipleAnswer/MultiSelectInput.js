@@ -25,20 +25,21 @@ export const MultiSelectInput = (props) => {
     <>
       <div id={props.name}>
         <h5>{props.question}</h5>
-
-        <select {...inputProps} name={props.name} multiple={props.multiple}>
-          {props.options.map((data, index) => {
-            return (
-              <option
-                value={data.value}
-                className="select"
-                key={`${props.type}-${index}`}
-              >
-                {data.label}
-              </option>
-            );
-          })}
-        </select>
+        <div>
+          <select {...inputProps} name={props.name} multiple={props.multiple}>
+            {props.options.map((data, index) => {
+              return (
+                <option
+                  value={data.value}
+                  className="select"
+                  key={`${props.type}-${index}`}
+                >
+                  {data.label}
+                </option>
+              );
+            })}
+          </select>
+        </div>
       </div>
     </>
   );

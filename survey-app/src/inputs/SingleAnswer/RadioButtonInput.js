@@ -12,7 +12,7 @@ export const RadioButtonInput = (props) => {
   const inputProps = {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,
-    value: value,
+    value: props.value,
     required: props.required,
     options: props.options,
     question: props.question,
@@ -34,6 +34,7 @@ export const RadioButtonInput = (props) => {
                   id={`${props.name}-${index}`}
                 />
                 <label
+                  value={data.value}
                   className="radio-inline control-label"
                   htmlFor={`${props.name}-${index}`}
                 >
