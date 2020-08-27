@@ -1,4 +1,4 @@
-// import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // class checkboxHook extends React.Component {
 //   constructor(props) {
@@ -24,17 +24,19 @@
 
 // export default checkboxHook;
 
-export const CheckboxHook = (props) => {
-  const [value, setValue] = useState([]);
-  const handleCheckbox = (event) => {
-    const input = event.target.value;
-    setValue(
-      value.include(input)
-        ? value.filter((item) => item !== input)
-        : [value, input],
-      () => {
-        console.log("Checkbox: ", value);
-      }
-    );
-  };
-};
+// export const checkboxHook = (props) => {
+//   const [checkedItems, setCheckedItems] = useState([]);
+
+//   useEffect(() => {
+//     console.log("Checked: ", checkedItems);
+//   }, [checkedItems]);
+
+//   const handleCheckbox = (event) => {
+//     const { value } = event.target;
+//     setCheckedItems((items) =>
+//       items.includes(value)
+//         ? items.filter((item) => item !== value)
+//         : [...items, value]
+//     );
+//   };
+// };

@@ -60,7 +60,7 @@ export const NameEmailComponent = (props) => {
             let inputKey = `input-${index}`;
             return data.type === "text" ? (
               <NameInput
-                className="form-control"
+                className="form-control my-3"
                 triggerCallback={callback}
                 name={data.name}
                 type={data.type}
@@ -71,7 +71,7 @@ export const NameEmailComponent = (props) => {
               />
             ) : (
               <EmailInput
-                className="form-control"
+                className="form-control mt-3"
                 triggerCallback={callback}
                 name={data.name}
                 type={data.type}
@@ -84,19 +84,19 @@ export const NameEmailComponent = (props) => {
           })}
           <div className="col-6 mx-auto text-center">
             <div className="button">
-              <button
-                className="btn btn-primary mt-4 mb-2 mx-5"
-                type="submit"
-                onClick={saveSurvey}
+              <Link
+                className="text-white "
+                name="BeginSurveyButton"
+                to="/survey"
               >
-                <Link
-                  className="text-white "
-                  name="BeginSurveyButton"
-                  to="/survey"
+                <button
+                  className="btn btn-primary mt-4 mb-2 mx-5"
+                  type="submit"
+                  onClick={saveSurvey}
                 >
                   Begin Survey
-                </Link>
-              </button>
+                </button>
+              </Link>
             </div>
           </div>
         </form>

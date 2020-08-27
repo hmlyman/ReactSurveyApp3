@@ -1,46 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useInputChange } from "../../Hooks/useInputChangeHook";
 import { isTextInput } from "../../validators";
-//import checkboxHook from "../../Hooks/checkBoxHook";
 
 export const CheckboxInput = (props) => {
   const { question } = props;
   const inputType = isTextInput(props.type) ? props.type : "checkbox";
-  const { value, handleChange } = useInputChange(
+  const { handleChange } = useInputChange(
     props.defaultValue,
     props.triggerCallback,
     inputType
   );
-  // const handleCheckbox = (event) => {
-  //   event.preventDefault();
-  //   const input = event.target.value;
-  //   this.setState(
-  //     {
-  //       value: this.includes(input)
-  //         ? this.includes((item) => item !== input)
-  //         : [...this.item, input],
-  //     },
-  //     () => {
-  //       console.log("CheckBox: ", this.state.value);
-  //     }
-  //   );
-  // };
+  const [checkedItems, setCheckedItems] = useState([]);
+
+  useEffect(() => {
+    console.log("Checked: ", checkedItems);
+  }, [checkedItems]);
 
   const inputProps = {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,
-    value: value,
+    value: props.value,
     required: props.required,
     options: props.options,
     type: inputType,
     name: props.name ? props.name : `${props.type}_${props.key}`,
+  };
+  const handleCheckbox = (event) => {
+    const { value } = event.target;
+    setCheckedItems((items) =>
+      items.includes(value)
+        ? items.filter((item) => item !== value)
+        : [...items, value]
+    );
   };
 
   return (
     <>
       <div id={props.name}>
         <h5 className="control-label">{question}</h5>
-        <div className="form-check" onChange={handleChange}>
+        <div className="form-check" onChange={handleCheckbox}>
           {props.options.map((data, index) => {
             return (
               <div key={`${props.type}-${index}`}>
