@@ -26,7 +26,12 @@ export const MultiSelectInput = (props) => {
       <div id={props.name}>
         <h5>{props.question}</h5>
         <div>
-          <select {...inputProps} name={props.name} multiple={props.multiple}>
+          <select
+            {...inputProps}
+            name={props.name}
+            multiple={props.multiple}
+            className="selectpicker"
+          >
             {props.options.map((data, index) => {
               return (
                 <option
