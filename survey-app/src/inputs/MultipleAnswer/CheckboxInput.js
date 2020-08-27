@@ -1,6 +1,7 @@
 import React from "react";
-import { useInputChange } from "../../hooks";
+import { useInputChange } from "../../Hooks/useInputChangeHook";
 import { isTextInput } from "../../validators";
+//import checkboxHook from "../../Hooks/checkBoxHook";
 
 export const CheckboxInput = (props) => {
   const { question } = props;
@@ -10,6 +11,20 @@ export const CheckboxInput = (props) => {
     props.triggerCallback,
     inputType
   );
+  // const handleCheckbox = (event) => {
+  //   event.preventDefault();
+  //   const input = event.target.value;
+  //   this.setState(
+  //     {
+  //       value: this.includes(input)
+  //         ? this.includes((item) => item !== input)
+  //         : [...this.item, input],
+  //     },
+  //     () => {
+  //       console.log("CheckBox: ", this.state.value);
+  //     }
+  //   );
+  // };
 
   const inputProps = {
     className: props.className ? props.className : "form-control",
@@ -25,7 +40,7 @@ export const CheckboxInput = (props) => {
     <>
       <div id={props.name}>
         <h5 className="control-label">{question}</h5>
-        <div className="form-check">
+        <div className="form-check" onChange={handleChange}>
           {props.options.map((data, index) => {
             return (
               <div key={`${props.type}-${index}`}>

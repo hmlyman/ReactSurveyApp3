@@ -1,5 +1,5 @@
 import React from "react";
-import { useInputChange } from "../hooks";
+import { useInputChange } from "../Hooks/useInputChangeHook";
 import { isTextInput } from "../validators";
 
 export const EmailInput = (props) => {
