@@ -25,7 +25,7 @@ export const NameInput = (props) => {
   return (
     <>
       <div id={props.name}>
-        <input {...inputProps} />
+        <input {...inputProps} required={props.required} />
       </div>
     </>
   );

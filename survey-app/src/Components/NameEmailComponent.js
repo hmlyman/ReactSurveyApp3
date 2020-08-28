@@ -46,14 +46,6 @@ export const NameEmailComponent = (props) => {
     });
   };
 
-  // function validate(name, email) {
-  //   return {
-  //     name: name.length === 0,
-  //     email: email.length === 0,
-  //   };
-  // }
-  // const errors = validate();
-
   const inputs = props.inputs
     ? props.inputs.filter((inputOption) => inputOption)
     : [];
@@ -90,20 +82,20 @@ export const NameEmailComponent = (props) => {
           })}
           <div className="col-6 mx-auto text-center">
             <div className="button">
-              <Link
+              {/* <Link
                 className="text-white "
                 name="BeginSurveyButton"
                 to="/survey"
+              > */}
+              <button
+                to="/survey"
+                className="btn btn-primary mt-4 mb-2 mx-5"
+                type="submit"
+                onClick={saveSurvey}
               >
-                <button
-                  // disabled={!isEnabled}
-                  className="btn btn-primary mt-4 mb-2 mx-5"
-                  type="submit"
-                  onClick={saveSurvey}
-                >
-                  Begin Survey
-                </button>
-              </Link>
+                Begin Survey
+              </button>
+              {/* </Link> */}
             </div>
           </div>
         </form>
