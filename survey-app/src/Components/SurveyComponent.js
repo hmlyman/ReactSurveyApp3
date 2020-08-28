@@ -101,6 +101,7 @@ export const SurveyComponent = (props) => {
                 defaultValue={data.defaultValue}
                 type={data.type}
                 options={data.options}
+                key={inputKey}
               />
             ) : data.type === "select" ? (
               <SelectInput
@@ -111,6 +112,7 @@ export const SurveyComponent = (props) => {
                 defaultValue={data.defaultValue}
                 type={data.type}
                 options={data.options}
+                key={inputKey}
               />
             ) : data.type === "multiSelect" ? (
               <MultiSelectInput
@@ -122,6 +124,7 @@ export const SurveyComponent = (props) => {
                 type={data.type}
                 multiple={data.multiple}
                 options={data.options}
+                key={inputKey}
               />
             ) : data.type === "checkbox" ? (
               <CheckboxInput
@@ -134,6 +137,7 @@ export const SurveyComponent = (props) => {
                 multiple={data.multiple}
                 options={data.options}
                 onChange={handleChange}
+                key={inputKey}
               />
             ) : (
               <ShortAnswerInput
