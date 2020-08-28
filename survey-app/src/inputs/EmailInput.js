@@ -3,7 +3,6 @@ import { useInputChange } from "../Hooks/useInputChangeHook";
 import { isTextInput } from "../validators";
 
 export const EmailInput = (props) => {
-  console.log(props);
   const inputType = isTextInput(props.type) ? props.type : "text";
   const { handleChange } = useInputChange(
     props.defaultValue,

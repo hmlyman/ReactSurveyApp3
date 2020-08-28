@@ -10,8 +10,6 @@ export const NameEmailComponent = (props) => {
   console.log(props);
 
   const triggerBackendUpdate = () => {
-    console.log(question);
-    console.log(surveyValues);
     setSurveyValues({});
     setQuestion({});
   };
@@ -19,8 +17,8 @@ export const NameEmailComponent = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     event.persist();
-
     setSurveyValues(surveyValues);
+    setQuestion(question);
     triggerBackendUpdate();
   };
   const callback = (name, value) => {

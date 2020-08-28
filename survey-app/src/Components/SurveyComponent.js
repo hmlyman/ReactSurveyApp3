@@ -11,6 +11,7 @@ export const SurveyComponent = (props) => {
   const [surveyValues, setSurveyValues] = useState({});
   const [inlineData, setInlineData] = useState({});
   const [question, setQuestion] = useState({});
+  console.log(props);
 
   const triggerBackendUpdate = () => {
     console.log(question);

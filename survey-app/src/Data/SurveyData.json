@@ -2,6 +2,7 @@
   {
     "page": 2,
     "name": "message",
+    "required": true,
     "type": "textarea",
     "placeholder": "Enter response here.",
     "question": "Are you aware you are canceling with your current company and entering a contract with Alder, Inc.?"
@@ -25,6 +26,7 @@
   },
   {
     "page": 2,
+    "required": true,
     "name": "checkboxChoice",
     "question": "Check all that apply. I understand:",
     "type": "checkbox",
@@ -54,6 +56,7 @@
   {
     "page": 2,
     "name": "Select",
+    "required": true,
     "question": "Which of the following is not true?",
     "type": "select",
     "options": [
@@ -78,6 +81,7 @@
   {
     "page": 2,
     "name": "multipleSelection",
+    "required": true,
     "question": "Select all that apply:",
     "type": "multiSelect",
     "multiple": true,
