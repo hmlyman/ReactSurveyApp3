@@ -46,6 +46,14 @@ export const NameEmailComponent = (props) => {
     });
   };
 
+  // function validate(name, email) {
+  //   return {
+  //     name: name.length === 0,
+  //     email: email.length === 0,
+  //   };
+  // }
+  // const errors = validate();
+
   const inputs = props.inputs
     ? props.inputs.filter((inputOption) => inputOption)
     : [];
@@ -88,6 +96,7 @@ export const NameEmailComponent = (props) => {
                 to="/survey"
               >
                 <button
+                  // disabled={!isEnabled}
                   className="btn btn-primary mt-4 mb-2 mx-5"
                   type="submit"
                   onClick={saveSurvey}

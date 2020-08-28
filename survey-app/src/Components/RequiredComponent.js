@@ -5,29 +5,19 @@ class RequiredComponent extends React.Component {
     super(props);
 
     this.state = {
-      fields: {},
-      errors: {},
+      name: "",
+      email: "",
+      touched: { name: false, email: false },
     };
   }
 
-  handleValidation() {
-    let fields = this.state.fields;
-    let errors = {};
-    let formIsValid = true;
+  handleBlur = (field) => (event) => {
+    this.setState({ touched: { ...this.state.touched, [field]: true } });
+  };
 
-    if (!fields["name"]) {
-      formIsValid = false;
-      errors["name"] = "Required";
-    }
-
-    if (!fields["email"]) {
-      formIsValid = false;
-      errors["email"] = "Required";
-    }
-
-    this.setState({ errors: errors });
-    return formIsValid;
-  }
+  handleValidation = (event) => {
+    this.setState({ name: event.target.value });
+  };
 }
 
 export default RequiredComponent;

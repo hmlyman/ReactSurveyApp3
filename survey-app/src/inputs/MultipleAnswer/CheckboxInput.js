@@ -43,6 +43,7 @@ export const CheckboxInput = (props) => {
             return (
               <div key={`${props.type}-${index}`}>
                 <input
+                  htmlFor="required"
                   {...inputProps}
                   className="form-check-input"
                   value={data.value}
