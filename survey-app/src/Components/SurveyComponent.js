@@ -11,7 +11,6 @@ export const SurveyComponent = (props) => {
   const [surveyValues, setSurveyValues] = useState({});
   const [inlineData, setInlineData] = useState({});
   const [question, setQuestion] = useState({});
-  console.log(props);
 
   const triggerBackendUpdate = () => {
     console.log(question);
@@ -51,24 +50,14 @@ export const SurveyComponent = (props) => {
   };
 
   const callback = (name, value) => {
+    if (name === "checkboxChoice") {
+      inlineData[name] = value;
+    } else {
+      inlineData[name] = value;
+    }
     console.log("Form Data: ", name, ": ", value);
-    inlineData[name] = value;
     setInlineData(inlineData);
     console.log(inlineData);
-  };
-
-  const handleChange = (event) => {
-    const input = event.target.value;
-    this.setState(
-      {
-        value: this.state.value.includes(input)
-          ? this.state.value.filter((item) => item !== input)
-          : [...this.state.value, input],
-      },
-      () => {
-        console.log("CheckBox: ", this.state.value);
-      }
-    );
   };
 
   const saveSurvey = async () => {
@@ -136,7 +125,6 @@ export const SurveyComponent = (props) => {
                 type={data.type}
                 multiple={data.multiple}
                 options={data.options}
-                onChange={handleChange}
                 key={inputKey}
               />
             ) : (
