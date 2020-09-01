@@ -4,16 +4,12 @@ import { isTextInput } from "../../validators";
 
 export const MultiSelectInput = (props) => {
   const inputType = isTextInput(props.type) ? props.type : "multiSelect";
-  const { handleChange } = useInputChange(
-    props.defaultValue,
-    props.triggerCallback,
-    inputType
-  );
+  const { handleChange } = useInputChange(props.defaultValue);
   const [selectedItems, setSelectedItems] = useState([]);
 
   useEffect(() => {
     console.log("Selected: ", selectedItems);
-  }, [selectedItems]);
+  }, [selectedItems, props]);
 
   const inputProps = {
     className: props.className ? props.className : "form-control",
@@ -28,11 +24,14 @@ export const MultiSelectInput = (props) => {
 
   const handleMultiSelect = (event) => {
     const { value } = event.target;
-    setSelectedItems((items) =>
-      items.includes(value)
+    setSelectedItems((items) => {
+      const updatedItems = items.includes(value)
         ? items.filter((item) => item !== value)
-        : [...items, value]
-    );
+        : [...items, value];
+
+      props.triggerCallback("multiSelect", updatedItems);
+      return updatedItems;
+    });
   };
 
   return (
@@ -52,6 +51,7 @@ export const MultiSelectInput = (props) => {
                   value={data.value}
                   className="select"
                   key={`${props.type}-${index}`}
+                  selected={selectedItems.includes(data.label)}
                 >
                   {data.label}
                 </option>

@@ -5,16 +5,12 @@ import { isTextInput } from "../../validators";
 export const CheckboxInput = (props) => {
   const { question } = props;
   const inputType = isTextInput(props.type) ? props.type : "checkbox";
-  const { handleChange } = useInputChange(
-    props.defaultValue,
-    props.triggerCallback,
-    inputType
-  );
+  const { handleChange } = useInputChange(props.defaultValue);
   const [checkedItems, setCheckedItems] = useState([]);
 
   useEffect(() => {
     console.log("Checked: ", checkedItems);
-  }, [checkedItems]);
+  }, [checkedItems, props]);
 
   const inputProps = {
     className: props.className ? props.className : "form-control",
@@ -27,11 +23,15 @@ export const CheckboxInput = (props) => {
   };
   const handleCheckbox = (event) => {
     const { value } = event.target;
-    setCheckedItems((items) =>
-      items.includes(value)
+    setCheckedItems((items) => {
+      const updatedItems = items.includes(value)
         ? items.filter((item) => item !== value)
-        : [...items, value]
-    );
+        : [...items, value];
+
+      props.triggerCallback("checkboxChoice", updatedItems);
+
+      return updatedItems;
+    });
   };
 
   return (

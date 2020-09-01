@@ -4,13 +4,14 @@ import { MultiSelectInput } from "../inputs/MultipleAnswer/MultiSelectInput";
 import { RadioButtonInput } from "../inputs/SingleAnswer/RadioButtonInput";
 import { SelectInput } from "../inputs/SingleAnswer/SelectInput";
 import { ShortAnswerInput } from "../inputs/SingleAnswer/ShortAnswerInput";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { isTextInput } from "../validators";
 
 export const SurveyComponent = (props) => {
   const [surveyValues, setSurveyValues] = useState({});
   const [inlineData, setInlineData] = useState({});
   const [question, setQuestion] = useState({});
+  const history = useHistory();
 
   const triggerBackendUpdate = () => {
     console.log(question);
@@ -43,33 +44,46 @@ export const SurveyComponent = (props) => {
         surveyValues[formInput.name] = values;
         question[formInput.name] = formInput.question;
       }
-    }
 
+      function handleValidation() {
+        let errors = {};
+        let formIsValid = true;
+
+        if (!formInput["name"]) {
+          formIsValid = false;
+          errors["name"] = "Cannot be empty";
+        }
+      }
+    }
     setSurveyValues(surveyValues);
     triggerBackendUpdate();
   };
 
   const callback = (name, value) => {
+    const updatedInlineData = Object.assign({}, inlineData);
     if (name === "checkboxChoice") {
-      inlineData[name] = value;
+      updatedInlineData[name] = value;
     } else {
-      inlineData[name] = value;
+      updatedInlineData[name] = value;
     }
     console.log("Form Data: ", name, ": ", value);
-    setInlineData(inlineData);
-    console.log(inlineData);
+    console.log(updatedInlineData);
+    setInlineData(updatedInlineData);
   };
-
-  const saveSurvey = async () => {
-    await fetch("/api/survey", {
-      method: "POST",
-      body: JSON.stringify(inlineData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).catch((error) => {
-      console.error(error);
-    });
+  const submitSurvey = () => {
+    history.push({ pathname: "/thankyou" });
+    const saveSurvey = async () => {
+      await fetch("/api/survey", {
+        method: "POST",
+        body: JSON.stringify(inlineData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).catch((error) => {
+        console.error(error);
+      });
+    };
+    saveSurvey();
   };
 
   const inputs = props.inputs
@@ -141,16 +155,14 @@ export const SurveyComponent = (props) => {
           })}
         </form>
         <div className="col text-center">
-          <Link className="text-white" to="/thankyou">
-            <button
-              name="submitSurveyButton"
-              className="btn btn-primary my-5 mx-5 "
-              type="submit"
-              onClick={saveSurvey}
-            >
-              Submit Survey
-            </button>
-          </Link>
+          <button
+            name="submitSurveyButton"
+            className="btn btn-primary my-5 mx-5 "
+            type="submit"
+            onClick={submitSurvey}
+          >
+            Submit Survey
+          </button>
         </div>
       </div>
     </>

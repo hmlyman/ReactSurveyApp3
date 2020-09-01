@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { NameInput } from "../inputs/NameInput";
 import { EmailInput } from "../inputs/EmailInput";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { data } from "jquery";
 
 export const NameEmailComponent = (props) => {
   const [surveyValues, setSurveyValues] = useState({});
   const [inlineData, setInlineData] = useState({});
   const [question, setQuestion] = useState({});
+  const history = useHistory();
   console.log(props);
 
   const triggerBackendUpdate = () => {
@@ -33,17 +35,24 @@ export const NameEmailComponent = (props) => {
     this.setState({ value: event.target.value });
     console.log("Name: ", event.target.value);
   };
-
-  const saveSurvey = async () => {
-    await fetch("/api/survey", {
-      method: "POST",
-      body: JSON.stringify(inlineData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).catch((error) => {
-      console.error(error);
-    });
+  const submitSurvey = () => {
+    if (data.name.length > 0) {
+      history.push({ pathname: "/survey" });
+      const saveSurvey = async () => {
+        await fetch("/api/survey", {
+          method: "POST",
+          body: JSON.stringify(inlineData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).catch((error) => {
+          console.error(error);
+        });
+      };
+      saveSurvey();
+    } else {
+      return "Please fill in all fields";
+    }
   };
 
   const inputs = props.inputs
@@ -82,20 +91,14 @@ export const NameEmailComponent = (props) => {
           })}
           <div className="col-6 mx-auto text-center">
             <div className="button">
-              <Link
-                className="text-white "
-                name="BeginSurveyButton"
+              <button
                 to="/survey"
+                className="btn btn-primary mt-4 mb-2 mx-5"
+                type="submit"
+                onClick={submitSurvey}
               >
-                <button
-                  to="/survey"
-                  className="btn btn-primary mt-4 mb-2 mx-5"
-                  type="submit"
-                  onClick={saveSurvey}
-                >
-                  Begin Survey
-                </button>
-              </Link>
+                Begin Survey
+              </button>
             </div>
           </div>
         </form>
