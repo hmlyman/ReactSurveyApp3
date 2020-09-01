@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { NameInput } from "../inputs/NameInput";
 import { EmailInput } from "../inputs/EmailInput";
 import { useHistory } from "react-router-dom";
-import { data } from "jquery";
 
 export const NameEmailComponent = (props) => {
   const [surveyValues, setSurveyValues] = useState({});
   const [inlineData, setInlineData] = useState({});
   const [question, setQuestion] = useState({});
   const history = useHistory();
+  // const nameRef = useRef();
+  // const emailRef = useRef();
   console.log(props);
 
   const triggerBackendUpdate = () => {
@@ -30,29 +31,41 @@ export const NameEmailComponent = (props) => {
     console.log(inlineData);
   };
 
+  // const handleValidation = () => {
+  //   let errors = {};
+  //   let formIsValid = true;
+
+  //   if (!surveyValues["nameRef"]) {
+  //     formIsValid = false;
+  //     errors["nameRef"] = "Cannot be empty";
+  //   }
+  //   if (!surveyValues["emailRef"]) {
+  //     formIsValid = false;
+  //     errors["emailRef"] = "Cannot be empty";
+  //   }
+  //   return formIsValid;
+  // };
+
   const handleChange = (event) => {
     event.preventDefault();
     this.setState({ value: event.target.value });
     console.log("Name: ", event.target.value);
   };
   const submitSurvey = () => {
-    if (data.name.length > 0) {
-      history.push({ pathname: "/survey" });
-      const saveSurvey = async () => {
-        await fetch("/api/survey", {
-          method: "POST",
-          body: JSON.stringify(inlineData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }).catch((error) => {
-          console.error(error);
-        });
-      };
-      saveSurvey();
-    } else {
-      return "Please fill in all fields";
-    }
+    history.push({ pathname: "/survey" });
+    const saveSurvey = async () => {
+      await fetch("/api/survey", {
+        method: "POST",
+        body: JSON.stringify(inlineData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).catch((error) => {
+        console.error(error);
+      });
+    };
+    saveSurvey();
+    // handleValidation();
   };
 
   const inputs = props.inputs
@@ -67,6 +80,7 @@ export const NameEmailComponent = (props) => {
             let inputKey = `input-${index}`;
             return data.type === "text" ? (
               <NameInput
+                // ref={nameRef}
                 className="form-control my-3"
                 triggerCallback={callback}
                 name={data.name}
@@ -78,6 +92,7 @@ export const NameEmailComponent = (props) => {
               />
             ) : (
               <EmailInput
+                // ref={emailRef}
                 className="form-control mt-3"
                 triggerCallback={callback}
                 name={data.name}

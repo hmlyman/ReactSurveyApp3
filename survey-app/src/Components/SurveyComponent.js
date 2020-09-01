@@ -44,16 +44,6 @@ export const SurveyComponent = (props) => {
         surveyValues[formInput.name] = values;
         question[formInput.name] = formInput.question;
       }
-
-      function handleValidation() {
-        let errors = {};
-        let formIsValid = true;
-
-        if (!formInput["name"]) {
-          formIsValid = false;
-          errors["name"] = "Cannot be empty";
-        }
-      }
     }
     setSurveyValues(surveyValues);
     triggerBackendUpdate();
