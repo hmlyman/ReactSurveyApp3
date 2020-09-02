@@ -1,5 +1,19 @@
 [
   {
+    "page": 1,
+    "required": true,
+    "name": "fullName",
+    "type": "text",
+    "placeholder": "Your full name"
+  },
+  {
+    "page": 1,
+    "required": true,
+    "name": "email",
+    "type": "email",
+    "placeholder": "Email"
+  },
+  {
     "page": 2,
     "name": "message",
     "required": true,

@@ -4,8 +4,9 @@ import { MultiSelectInput } from "../inputs/MultipleAnswer/MultiSelectInput";
 import { RadioButtonInput } from "../inputs/SingleAnswer/RadioButtonInput";
 import { SelectInput } from "../inputs/SingleAnswer/SelectInput";
 import { ShortAnswerInput } from "../inputs/SingleAnswer/ShortAnswerInput";
+import { NameInput } from "../inputs/NameInput";
+import { EmailInput } from "../inputs/EmailInput";
 import { useHistory } from "react-router-dom";
-// import { isTextInput } from "../validators";
 
 export const SurveyComponent = (props) => {
   const [surveyValues, setSurveyValues] = useState({});
@@ -24,6 +25,12 @@ export const SurveyComponent = (props) => {
     inlineData[name] = value;
     setInlineData(inlineData);
     console.log(inlineData);
+  };
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    this.setState({ value: event.target.value });
+    console.log("Name: ", event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -55,7 +62,29 @@ export const SurveyComponent = (props) => {
         <form onSubmit={handleSubmit}>
           {inputs.map((data, index) => {
             let inputKey = `input-${index}`;
-            return data.type === "radio" ? (
+            return data.type === "text" ? (
+              <NameInput
+                className="form-control my-3"
+                triggerCallback={callback}
+                name={data.name}
+                type={data.type}
+                placeholder={data.placeholder}
+                required={true}
+                onChange={handleChange}
+                key={inputKey}
+              />
+            ) : data.type === "email" ? (
+              <EmailInput
+                className="form-control mt-3"
+                triggerCallback={callback}
+                name={data.name}
+                type={data.type}
+                placeholder={data.placeholder}
+                required={true}
+                onChange={handleChange}
+                key={inputKey}
+              />
+            ) : data.type === "radio" ? (
               <RadioButtonInput
                 name={data.name}
                 triggerCallback={callback}

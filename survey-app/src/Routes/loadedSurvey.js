@@ -16,14 +16,14 @@ class LoadedSurvey extends React.Component {
                   <div>
                     <p>
                       <strong>Name: </strong>
-                      <p>{submittedData.fullName}</p>
                     </p>
+                    <p>{submittedData.fullName}</p>
                   </div>
                   <div>
                     <p>
                       <strong>Email: </strong>
-                      <p>{submittedData.email}</p>
                     </p>
+                    <p>{submittedData.email}</p>
                   </div>
                   <div>
                     <p>
@@ -53,7 +53,7 @@ class LoadedSurvey extends React.Component {
                     <p>
                       <strong>Which of the following is not true?</strong>
                     </p>
-                    <p>{submittedData.select}</p>
+                    <p>{submittedData.Select}</p>
                   </div>
                   <div>
                     <p>
