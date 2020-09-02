@@ -51,7 +51,6 @@ export const MultiSelectInput = (props) => {
                   value={data.value}
                   className="select"
                   key={`${props.type}-${index}`}
-                  selected={selectedItems.includes(data.label)}
                 >
                   {data.label}
                 </option>

@@ -5,7 +5,7 @@ import { RadioButtonInput } from "../inputs/SingleAnswer/RadioButtonInput";
 import { SelectInput } from "../inputs/SingleAnswer/SelectInput";
 import { ShortAnswerInput } from "../inputs/SingleAnswer/ShortAnswerInput";
 import { useHistory } from "react-router-dom";
-import { isTextInput } from "../validators";
+// import { isTextInput } from "../validators";
 
 export const SurveyComponent = (props) => {
   const [surveyValues, setSurveyValues] = useState({});
@@ -20,11 +20,10 @@ export const SurveyComponent = (props) => {
   };
 
   const callback = (name, value) => {
-    const updatedInlineData = Object.assign({}, inlineData);
-    updatedInlineData[name] = value;
     console.log("Form Data: ", name, ": ", value);
-    console.log(updatedInlineData);
-    setInlineData(updatedInlineData);
+    inlineData[name] = value;
+    setInlineData(inlineData);
+    console.log(inlineData);
   };
 
   const handleSubmit = async (event) => {
@@ -60,7 +59,7 @@ export const SurveyComponent = (props) => {
               <RadioButtonInput
                 name={data.name}
                 triggerCallback={callback}
-                required={true}
+                required={data.required}
                 question={data.question}
                 defaultValue={data.defaultValue}
                 type={data.type}
@@ -71,7 +70,7 @@ export const SurveyComponent = (props) => {
               <SelectInput
                 name={data.name}
                 triggerCallback={callback}
-                required={true}
+                required={data.required}
                 question={data.question}
                 defaultValue={data.defaultValue}
                 type={data.type}
@@ -83,6 +82,7 @@ export const SurveyComponent = (props) => {
                 name={data.name}
                 triggerCallback={callback}
                 question={data.question}
+                required={data.required}
                 defaultValue={data.defaultValue}
                 type={data.type}
                 multiple={data.multiple}
