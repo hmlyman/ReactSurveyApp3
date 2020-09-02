@@ -9,7 +9,9 @@ export function isTextInput(inputType) {
     case "textarea":
       return true;
     case "checkbox":
-      return false;
+      return true;
+    case "radio":
+      return true;
     default:
       return false;
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ShortAnswerData } from "../../../Data/SurveyData";
+import ShortAnswerInput from "../../../inputs/SingleAnswer/ShortAnswerInput";
 
 class ShortAnswerQuestion extends Component {
   constructor(props) {
@@ -20,24 +20,7 @@ class ShortAnswerQuestion extends Component {
   }
 
   render() {
-    return (
-      <div className="container">
-        <div id="shortAnswerContainer" className="form-group" noValidate>
-          {ShortAnswerData.map((data, key) => {
-            return (
-              <div key={key} className="textarea">
-                <h5>{data.question}</h5>
-                <input
-                  type={data.type}
-                  value={data.value}
-                  onChange={this.handleChange}
-                />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
+    return <ShortAnswerInput onChange={this.handleChange} />;
   }
 }
 

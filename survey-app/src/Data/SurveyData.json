@@ -1,21 +1,8 @@
 [
   {
-    "page": 1,
-    "required": true,
-    "name": "fullName",
-    "type": "text",
-    "placeholder": "Your full name"
-  },
-  {
-    "page": 1,
-    "required": true,
-    "name": "email",
-    "type": "email",
-    "placeholder": "Email"
-  },
-  {
     "page": 2,
     "name": "message",
+    "required": true,
     "type": "textarea",
     "placeholder": "Enter response here.",
     "question": "Are you aware you are canceling with your current company and entering a contract with Alder, Inc.?"
@@ -39,6 +26,7 @@
   },
   {
     "page": 2,
+    "required": true,
     "name": "checkboxChoice",
     "question": "Check all that apply. I understand:",
     "type": "checkbox",
@@ -67,7 +55,8 @@
   },
   {
     "page": 2,
-    "name": "mySelection",
+    "name": "Select",
+    "required": true,
     "question": "Which of the following is not true?",
     "type": "select",
     "options": [
@@ -92,8 +81,9 @@
   {
     "page": 2,
     "name": "multipleSelection",
+    "required": true,
     "question": "Select all that apply:",
-    "type": "selectMultiple",
+    "type": "multiSelect",
     "multiple": true,
     "options": [
       {
@@ -101,8 +91,8 @@
         "label": "I am happy with the system as it has been explained to me."
       },
       {
-        "value": "I am happy with the level of customer service I have receievd today.",
-        "label": "I am happy with the level of customer service I have receievd today."
+        "value": "I am happy with the level of customer service I have received today.",
+        "label": "I am happy with the level of customer service I have received today."
       },
       {
         "value": "I am happy with the representatives who have helped protect my home today.",
