@@ -1,23 +1,36 @@
-import React from "react";
+import { useEffect, useState } from "react";
 
-class RequiredComponent extends React.Component {
-  constructor(props) {
-    super(props);
+const RequiredComponent = (callback, validate) => {
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState({});
 
-    this.state = {
-      name: "",
-      email: "",
-      touched: { name: false, email: false },
-    };
-  }
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && isSubmitting) {
+      callback();
+    }
+  }, [errors]);
 
-  handleBlur = (field) => (event) => {
-    this.setState({ touched: { ...this.state.touched, [field]: true } });
+  const handleValidationSubmit = (event) => {
+    if (event) event.preventDefault();
+    setErrors(validate(values));
+    setIsSubmitting(true);
   };
 
-  handleValidation = (event) => {
-    this.setState({ name: event.target.value });
+  const handleValidationChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      [event.target.name]: event.target.value,
+    }));
   };
-}
+
+  return {
+    handleValidationChange,
+    handleValidationSubmit,
+    values,
+    errors,
+  };
+};
 
 export default RequiredComponent;

@@ -12,68 +12,39 @@ export const SurveyComponent = (props) => {
   const [inlineData, setInlineData] = useState({});
   const [question, setQuestion] = useState({});
   const history = useHistory();
+  console.log(props);
 
   const triggerBackendUpdate = () => {
-    console.log(question);
-    console.log(surveyValues);
     setSurveyValues({});
     setQuestion({});
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    event.persist();
-    for (let formInput of event.target.elements) {
-      const isText = isTextInput(formInput.type);
-      console.log(formInput);
-
-      if (isText) {
-        surveyValues[formInput.name] = formInput.value;
-        question[formInput.question] = formInput.question;
-      }
-      if (formInput.type === "multiSelect") {
-        let selected = [].filter.call(
-          formInput.options,
-          (option) => option.selected
-        );
-        console.log(formInput);
-        console.log(selected);
-        console.log(formInput.options.selected);
-
-        const values = selected.map((option) => option.value);
-        surveyValues[formInput.name] = values;
-        question[formInput.name] = formInput.question;
-      }
-    }
-    setSurveyValues(surveyValues);
-    triggerBackendUpdate();
-  };
-
   const callback = (name, value) => {
     const updatedInlineData = Object.assign({}, inlineData);
-    if (name === "checkboxChoice") {
-      updatedInlineData[name] = value;
-    } else {
-      updatedInlineData[name] = value;
-    }
+    updatedInlineData[name] = value;
     console.log("Form Data: ", name, ": ", value);
     console.log(updatedInlineData);
     setInlineData(updatedInlineData);
   };
-  const submitSurvey = () => {
-    history.push({ pathname: "/thankyou" });
-    const saveSurvey = async () => {
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    event.persist();
+    setSurveyValues(surveyValues);
+    setQuestion(question);
+    triggerBackendUpdate();
+    try {
       await fetch("/api/survey", {
         method: "POST",
         body: JSON.stringify(inlineData),
         headers: {
           "Content-Type": "application/json",
         },
-      }).catch((error) => {
-        console.error(error);
       });
-    };
-    saveSurvey();
+      history.push({ pathname: "/thankyou" });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const inputs = props.inputs
@@ -81,7 +52,7 @@ export const SurveyComponent = (props) => {
     : [];
   return (
     <>
-      <div id="surveyContainer">
+      <div id="surveyContainer" className="form-group">
         <form onSubmit={handleSubmit}>
           {inputs.map((data, index) => {
             let inputKey = `input-${index}`;
@@ -89,7 +60,7 @@ export const SurveyComponent = (props) => {
               <RadioButtonInput
                 name={data.name}
                 triggerCallback={callback}
-                required={data.required}
+                required={true}
                 question={data.question}
                 defaultValue={data.defaultValue}
                 type={data.type}
@@ -100,7 +71,7 @@ export const SurveyComponent = (props) => {
               <SelectInput
                 name={data.name}
                 triggerCallback={callback}
-                required={data.required}
+                required={true}
                 question={data.question}
                 defaultValue={data.defaultValue}
                 type={data.type}
@@ -111,7 +82,6 @@ export const SurveyComponent = (props) => {
               <MultiSelectInput
                 name={data.name}
                 triggerCallback={callback}
-                required={data.required}
                 question={data.question}
                 defaultValue={data.defaultValue}
                 type={data.type}
@@ -143,17 +113,19 @@ export const SurveyComponent = (props) => {
               />
             );
           })}
+
+          <div className="col text-center">
+            <div className="button">
+              <button
+                name="submitSurveyButton"
+                className="btn btn-primary my-5 mx-5 "
+                type="submit"
+              >
+                Submit Survey
+              </button>
+            </div>
+          </div>
         </form>
-        <div className="col text-center">
-          <button
-            name="submitSurveyButton"
-            className="btn btn-primary my-5 mx-5 "
-            type="submit"
-            onClick={submitSurvey}
-          >
-            Submit Survey
-          </button>
-        </div>
       </div>
     </>
   );

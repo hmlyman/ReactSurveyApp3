@@ -13,7 +13,6 @@ export const NameInput = (props) => {
   const inputProps = {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,
-    value: props.value,
     required: props.required,
     question: props.question,
     placeholder: props.placeholder,

@@ -13,7 +13,7 @@ export const RadioButtonInput = (props) => {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,
     value: props.value,
-    required: props.required,
+    required: "true",
     options: props.options,
     question: props.question,
     type: inputType,

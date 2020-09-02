@@ -14,7 +14,7 @@ export const EmailInput = (props) => {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,
     value: props.value,
-    required: props.required,
+    required: true,
     question: props.question,
     placeholder: props.placeholder,
     type: inputType,

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { NameInput } from "../inputs/NameInput";
 import { EmailInput } from "../inputs/EmailInput";
 import { useHistory } from "react-router-dom";
@@ -8,8 +8,6 @@ export const NameEmailComponent = (props) => {
   const [inlineData, setInlineData] = useState({});
   const [question, setQuestion] = useState({});
   const history = useHistory();
-  // const nameRef = useRef();
-  // const emailRef = useRef();
   console.log(props);
 
   const triggerBackendUpdate = () => {
@@ -17,13 +15,6 @@ export const NameEmailComponent = (props) => {
     setQuestion({});
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    event.persist();
-    setSurveyValues(surveyValues);
-    setQuestion(question);
-    triggerBackendUpdate();
-  };
   const callback = (name, value) => {
     console.log("Form Data: ", name, ": ", value);
     inlineData[name] = value;
@@ -31,41 +22,30 @@ export const NameEmailComponent = (props) => {
     console.log(inlineData);
   };
 
-  // const handleValidation = () => {
-  //   let errors = {};
-  //   let formIsValid = true;
-
-  //   if (!surveyValues["nameRef"]) {
-  //     formIsValid = false;
-  //     errors["nameRef"] = "Cannot be empty";
-  //   }
-  //   if (!surveyValues["emailRef"]) {
-  //     formIsValid = false;
-  //     errors["emailRef"] = "Cannot be empty";
-  //   }
-  //   return formIsValid;
-  // };
-
   const handleChange = (event) => {
     event.preventDefault();
     this.setState({ value: event.target.value });
     console.log("Name: ", event.target.value);
   };
-  const submitSurvey = () => {
-    history.push({ pathname: "/survey" });
-    const saveSurvey = async () => {
+
+  const submitSurvey = async (event) => {
+    event.preventDefault();
+    event.persist();
+    setSurveyValues(surveyValues);
+    setQuestion(question);
+    triggerBackendUpdate();
+    try {
       await fetch("/api/survey", {
         method: "POST",
         body: JSON.stringify(inlineData),
         headers: {
           "Content-Type": "application/json",
         },
-      }).catch((error) => {
-        console.error(error);
       });
-    };
-    saveSurvey();
-    // handleValidation();
+      history.push({ pathname: "/survey" });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const inputs = props.inputs
@@ -75,30 +55,28 @@ export const NameEmailComponent = (props) => {
   return (
     <>
       <div id="nameContainer" className="form-group">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submitSurvey}>
           {inputs.map((data, index) => {
             let inputKey = `input-${index}`;
             return data.type === "text" ? (
               <NameInput
-                // ref={nameRef}
                 className="form-control my-3"
                 triggerCallback={callback}
                 name={data.name}
                 type={data.type}
                 placeholder={data.placeholder}
-                required={data.required}
+                required={true}
                 onChange={handleChange}
                 key={inputKey}
               />
             ) : (
               <EmailInput
-                // ref={emailRef}
                 className="form-control mt-3"
                 triggerCallback={callback}
                 name={data.name}
                 type={data.type}
                 placeholder={data.placeholder}
-                required={data.required}
+                required={true}
                 onChange={handleChange}
                 key={inputKey}
               />
@@ -106,12 +84,7 @@ export const NameEmailComponent = (props) => {
           })}
           <div className="col-6 mx-auto text-center">
             <div className="button">
-              <button
-                to="/survey"
-                className="btn btn-primary mt-4 mb-2 mx-5"
-                type="submit"
-                onClick={submitSurvey}
-              >
+              <button className="btn btn-primary mt-4 mb-2 mx-5" type="submit">
                 Begin Survey
               </button>
             </div>
