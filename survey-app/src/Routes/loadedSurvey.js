@@ -1,14 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LoadSurveyComponent from "../Components/Posts/LoadSurveyComponent";
 import SubmittedData from "../Data/SubmittedData.json";
 import Filter from "../Components/FilterComponent";
 
 class LoadedSurvey extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <>
@@ -76,9 +71,6 @@ class LoadedSurvey extends React.Component {
                 </div>
               );
             })}
-            <form>
-              <LoadSurveyComponent />
-            </form>
             <Link
               name="loadedSurveyToHomeButton"
               className="btn btn-primary my-5 mx-5"
