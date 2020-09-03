@@ -2,28 +2,40 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LoadSurveyComponent from "../Components/Posts/LoadSurveyComponent";
 import SubmittedData from "../Data/SubmittedData.json";
+import Filter from "../Components/FilterComponent";
 
 class LoadedSurvey extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <>
         <div className="container">
           <div className="col-6 mx-auto text-center">
-            <h1>Loaded Survey</h1>
-            {SubmittedData.map((submittedData, index) => {
+            <h1>Load Your Survey</h1>
+            <div>
+              <Filter
+                onTextChange={(text) => this.setState({ filterString: text })}
+              />
+            </div>
+            {SubmittedData.filter((SubmittedData) => {
+              return SubmittedData.email === "email@email.com";
+            }).map((SubmittedData, index) => {
               return (
                 <div className="text-left">
                   <div>
                     <p>
                       <strong>Name: </strong>
                     </p>
-                    <p>{submittedData.fullName}</p>
+                    <p>{SubmittedData.fullName}</p>
                   </div>
                   <div>
                     <p>
                       <strong>Email: </strong>
                     </p>
-                    <p>{submittedData.email}</p>
+                    <p>{SubmittedData.email}</p>
                   </div>
                   <div>
                     <p>
@@ -32,7 +44,7 @@ class LoadedSurvey extends React.Component {
                         company and entering a contract with Alder, Inc.?{" "}
                       </strong>
                     </p>
-                    <p>{submittedData.message}</p>
+                    <p>{SubmittedData.message}</p>
                   </div>
                   <div>
                     <p>
@@ -41,25 +53,25 @@ class LoadedSurvey extends React.Component {
                         $49.95?
                       </strong>
                     </p>
-                    <p>{submittedData.radioChoice}</p>
+                    <p>{SubmittedData.radioChoice}</p>
                   </div>
                   <div>
                     <p>
                       <strong>Check all that apply. I understand:</strong>
                     </p>
-                    <p>{submittedData.checkboxChoice}</p>
+                    <p>{SubmittedData.checkboxChoice}</p>
                   </div>
                   <div>
                     <p>
                       <strong>Which of the following is not true?</strong>
                     </p>
-                    <p>{submittedData.Select}</p>
+                    <p>{SubmittedData.Select}</p>
                   </div>
                   <div>
                     <p>
                       <strong>Select all that apply:</strong>
                     </p>
-                    <p>{submittedData.multiSelect}</p>
+                    <p>{SubmittedData.multiSelect}</p>
                   </div>
                 </div>
               );
