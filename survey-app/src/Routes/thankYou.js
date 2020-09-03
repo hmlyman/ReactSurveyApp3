@@ -15,6 +15,13 @@ class ThankYou extends React.Component {
             >
               Begin New Survey
             </Link>
+            <Link
+              name="BeginFromThankYouBtn"
+              className="btn btn-primary my-5 mx-5"
+              to="/loadedSurvey"
+            >
+              Load Survey
+            </Link>
           </div>
         </div>
       </>

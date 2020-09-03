@@ -1,9 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SubmittedData from "../Data/SubmittedData.json";
-import Filter from "../Components/FilterComponent";
 
 class LoadedSurvey extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: "",
+    };
+  }
+
+  updateSearch(text) {
+    this.setState({ search: text });
+  }
+
   render() {
     return (
       <>
@@ -11,12 +21,12 @@ class LoadedSurvey extends React.Component {
           <div className="col-6 mx-auto text-center">
             <h1>Load Your Survey</h1>
             <div>
-              <Filter
-                onTextChange={(text) => this.setState({ filterString: text })}
+              <input
+                onKeyUp={(event) => this.updateSearch(event.target.value)}
               />
             </div>
             {SubmittedData.filter((SubmittedData) => {
-              return SubmittedData.email === "email@email.com";
+              return SubmittedData.email.includes("@" && this.state.search);
             }).map((SubmittedData, index) => {
               return (
                 <div className="text-left">
