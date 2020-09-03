@@ -26,7 +26,10 @@ class LoadedSurvey extends React.Component {
               />
             </div>
             {SubmittedData.filter((SubmittedData) => {
-              return SubmittedData.email.includes("@" && this.state.search);
+              return (
+                SubmittedData.email.includes("@") &&
+                SubmittedData.email.includes(this.state.search)
+              );
             }).map((SubmittedData, index) => {
               return (
                 <div className="text-left">
@@ -64,7 +67,17 @@ class LoadedSurvey extends React.Component {
                     <p>
                       <strong>Check all that apply. I understand:</strong>
                     </p>
-                    <p>{SubmittedData.checkboxChoice}</p>
+                    <p>
+                      {SubmittedData.checkboxChoice[0]}
+                      <br></br>
+                      {SubmittedData.checkboxChoice[1]}
+                      <br></br>
+                      {SubmittedData.checkboxChoice[2]}
+                      <br></br>
+                      {SubmittedData.checkboxChoice[3]}
+                      <br></br>
+                      {SubmittedData.checkboxChoice[4]}
+                    </p>
                   </div>
                   <div>
                     <p>
@@ -76,7 +89,13 @@ class LoadedSurvey extends React.Component {
                     <p>
                       <strong>Select all that apply:</strong>
                     </p>
-                    <p>{SubmittedData.multiSelect}</p>
+                    <p>
+                      {SubmittedData.multiSelect[0]}
+                      <br></br>
+                      {SubmittedData.multiSelect[1]}
+                      <br></br>
+                      {SubmittedData.multiSelect[2]}
+                    </p>
                   </div>
                 </div>
               );
