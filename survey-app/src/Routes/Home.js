@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
-import Header from "../Components/Header/Header";
+//import Header from "../Components/Header/Header";
 import RegistrationForm from "../Components/Registration/RegistrationForm";
 
 class App extends React.Component {
@@ -9,12 +9,11 @@ class App extends React.Component {
     return (
       <>
         <div className="container">
-          <div className="col-6 mx-auto text-left">
+          <div className="col-12 mx-auto">
             <nav className="navbar">
-              <Header />
               <Link
                 name="loadSurveyButton"
-                className="btn btn-primary my-2 mx-5"
+                className="btn btn-primary my-2 mx-auto"
                 to="/loadedSurvey"
               >
                 Load Survey
@@ -22,10 +21,8 @@ class App extends React.Component {
             </nav>
           </div>
         </div>
-        <div className="container">
-          <div className="col-6 mx-auto text-left">
-            <RegistrationForm />
-          </div>
+        <div className="col-12 mx-auto text-center">
+          <RegistrationForm />
         </div>
       </>
     );

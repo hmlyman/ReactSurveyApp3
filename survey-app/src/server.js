@@ -5,12 +5,14 @@ var jsonData = require("./Data/SubmittedData.json");
 var passwordData = require("./Data/EmailAndPasswordData.json");
 var app = express();
 var router = express.Router();
+var loginRouter = express.Router();
 
 app.set("port", process.env.PORT || 4000);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/api", router);
+app.use("/api", loginRouter);
 
 router.get("/", function (req, res) {
   res.json({ message: "welcome to the API" });
@@ -36,8 +38,8 @@ router
     });
   });
 
-router
-  .route("/")
+loginRouter
+  .route("/Home")
   .post(function (req, res) {
     const data = passwordData;
     const newData = req.body;
