@@ -2,6 +2,7 @@ var fs = require("fs");
 var express = require("express");
 var bodyParser = require("body-parser");
 var jsonData = require("./Data/SubmittedData.json");
+var passwordData = require("./Data/EmailAndPasswordData.json");
 var app = express();
 var router = express.Router();
 
@@ -32,6 +33,31 @@ router
     survey.find(function (err, surveys) {
       if (err) res.send(err);
       res.json(surveys);
+    });
+  });
+
+router
+  .route("/")
+  .post(function (req, res) {
+    const data = passwordData;
+    const newData = req.body;
+    data.push(newData);
+    fs.writeFile(
+      "./Data/EmailAndPasswordData.json",
+      JSON.stringify(data),
+      (error) => {
+        if (error) {
+          throw error;
+        }
+        console.log("Done");
+        res.json({ message: "Success", data: newData });
+      }
+    );
+  })
+  .get(function (req, res) {
+    login.find(function (err, login) {
+      if (err) res.send(err);
+      res.json(login);
     });
   });
 
