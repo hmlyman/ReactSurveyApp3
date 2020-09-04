@@ -46,7 +46,7 @@ export const SurveyComponent = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
-      }).then(JSON.add("uniqueID"));
+      });
       history.push({ pathname: "/thankyou" });
     } catch (err) {
       console.log(err);
