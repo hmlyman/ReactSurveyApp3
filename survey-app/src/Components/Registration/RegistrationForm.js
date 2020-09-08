@@ -9,6 +9,7 @@ export const RegistrationForm = (props) => {
   const [loginData, setLoginData] = useState({});
   const [loginValues, setLoginValues] = useState({});
   const history = useHistory({});
+  console.log(props);
 
   const triggerBackendUpdate = () => {
     setLoginValues({});
@@ -34,14 +35,19 @@ export const RegistrationForm = (props) => {
     setLoginValues(loginValues);
     triggerBackendUpdate();
     if (state.password === state.confirmPassword) {
-      await fetch("/api/login", {
-        method: "POST",
-        body: JSON.stringify(loginData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      history.push({ pathname: "/survey" });
+      try {
+        await fetch("/api/login", {
+          method: "POST",
+          body: JSON.stringify(loginData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        history.push({ pathname: "/survey" });
+      } catch (err) {
+        console.log(err);
+      }
     }
     // } else {
     //   props.showError("Passwords do not match");
@@ -53,7 +59,7 @@ export const RegistrationForm = (props) => {
       <div className="card col-6 mx-auto login-card mt-2">
         <form onSubmit={handleSubmit}>
           <div className="form-group text-left">
-            <label htmlFor="exampleInputEmail">Email Address</label>
+            <label htmlFor="loginEmail">Email Address</label>
             <input
               type="email"
               onBlur={callback}
@@ -70,7 +76,7 @@ export const RegistrationForm = (props) => {
             </small>
           </div>
           <div className="form-group text-left">
-            <label htmlFor="exampleInputPassword1">Password</label>
+            <label htmlFor="loginPassword">Password</label>
             <input
               type="password"
               onBlur={callback}
@@ -84,7 +90,7 @@ export const RegistrationForm = (props) => {
             />
           </div>
           <div className="form-group text-left">
-            <label htmlFor="exampleInputPassword1">Confirm Password</label>
+            <label htmlFor="loginConfirmPassword">Confirm Password</label>
             <input
               type="password"
               className="form-control"
