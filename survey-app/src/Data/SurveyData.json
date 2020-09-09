@@ -40,7 +40,6 @@
   },
   {
     "page": 2,
-    "required": true,
     "name": "checkboxChoice",
     "question": "Check all that apply. I understand:",
     "type": "checkbox",

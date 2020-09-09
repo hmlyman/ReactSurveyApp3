@@ -4,8 +4,8 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
-const User = require("./UserModel/User");
-const authorization = require("./Middleware/middleware");
+const User = require("./src/UserModel/User");
+const authorization = require("./src/Middleware/middleware");
 
 const app = express();
 
@@ -16,13 +16,17 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 const mongoUri = "mongodb://localhost/survey-app";
-mongoose.connect(mongoUri, { useNewUrlParser: true }, function (err) {
-  if (err) {
-    throw err;
-  } else {
-    console.log("Connected to ${mongoUri}");
+mongoose.connect(
+  mongoUri,
+  { useUnifiedTopology: true, useNewUrlParser: true },
+  function (err) {
+    if (err) {
+      throw err;
+    } else {
+      console.log("Connected to", { mongoUri });
+    }
   }
-});
+);
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -35,7 +39,7 @@ app.get("/api/home", function (req, res) {
 });
 
 app.get("/api/secret", authorization, function (req, res) {
-  res.send("");
+  res.send("The password is dog");
 });
 
 app.post("/api/register", function (req, res) {

@@ -4,34 +4,40 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const UserSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true, trim: true },
   password: { type: String, required: true },
+  name: { type: String, required: true, trim: true },
 });
 
-UserSchema.pre("save", function (next) {
-  if (this.isNew || this.isModified("password")) {
-    const document = this;
-    bcrypt.hash(document.password, saltRounds, function (err, hashedPassword) {
-      if (err) {
-        next(err);
+UserSchema.statics.authenticate = function (email, password, callback) {
+  UserSchema.findOne({ email: email }).exec(function (error, user) {
+    if (error) {
+      return callback(error);
+    } else if (!user) {
+      var err = new Error("User not found");
+      err.status = 401;
+      return callback(err);
+    }
+    bcrypt.compare(password, user.password, function (error, result) {
+      if (result === true) {
+        return callback(null, user);
       } else {
-        document.password = hashedPassword;
-        next();
+        return callback();
       }
     });
-  } else {
-    next();
-  }
-});
-
-UserSchema.methods.isCorrectPassword = function (password, callback) {
-  bcrypt.compare(password, this.password, function (err, same) {
-    if (err) {
-      callback(err);
-    } else {
-      callback(err, same);
-    }
   });
 };
+
+UserSchema.pre("save", function (next) {
+  const user = this;
+  bcrypt.hash(user.password, saltRounds, function (err, hashedPassword) {
+    if (err) {
+      return next(err);
+    } else {
+      user.password = hashedPassword;
+      next();
+    }
+  });
+});
 
 module.exports = mongoose.model("User", UserSchema);
